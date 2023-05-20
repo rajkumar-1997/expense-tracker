@@ -1,4 +1,5 @@
 const express=require('express');
+const bodyParser=require('body-parser')
 const path=require('path');
 const cors=require('cors');
 const app=express();
@@ -8,8 +9,8 @@ require('dotenv').config();
 const PORT=process.env.PORT || 3000;
 const sequelize=require('./util/database');
 
-app.use(express.urlencoded({extended:true}));
-app.use(express.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
 const userRoutes=require('./routes/user');
