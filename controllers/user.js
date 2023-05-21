@@ -1,8 +1,8 @@
 const User=require('../models/user');
 const path=require('path')
+const bcrypt=require('bcrypt');
 
-
-
+const saltRounds=10;
 
 
 function  isNotValid(str){
@@ -21,13 +21,29 @@ exports.signUp=(req,res,next)=>{
         return res.status(400).send({type:'error',message:'Invalid Form Data!'})
     }
     else{
-        User.create({name,email,password})
-        .then(()=>{
-            res.status(200).json({message:'Successfully created'})
+        User.findAll({where:{email:email}})
+        .then((users)=>{
+            if(users.length==1){
+                throw{type:"error",message:"User Already Exists!"}
+            }
+            else{
+                bcrypt.hash(password,saltRounds,(err,hash)=>{
+                    console.log(err)
+                    User.create({name,email,password:hash})
+                    res.status(200).send({message:"user created successfully"})
+            })
+       
+            }
+     
           
         }).catch((err)=>{
-            console.log(err);
-            res.status(403).json(err);
+            if(err.type=='error'){
+                res.status(403).send(err);
+            }
+            else{
+                console.log(err);
+                res.status(500).send(err);
+            }
         })
     }
 }
@@ -41,22 +57,37 @@ exports.logIn=(req,res,next)=>{
         return res.status(400).send({type:'error',message:'Invalid Form Data!'})
     }
     else{
-        User.findAll({where:{email}}).then((user)=>{
-            if(user.length>0){
-                if(user[0].password===password){
-                    res.status(200).send({message:'user logged in successfully'})
+        User.findAll({where:{email}}).then((users)=>{
+            if(users.length==0) {
+                   throw{type:'error',message:"user not found!"};
+            }
+          else{
+            bcrypt.compare(password,users[0].password,(err,result)=>{
+                if(err){
+                    res.status(500).send({type:'error',message:'someting went wrong!'})
+                }
+                if(result==true){
+                    res.status(200).send({message:'logged in successfully'})
                 }
                 else{
-                    res.status(404).send({type:error,message:'Wrong password'});
+                    res.status(404).send({type:'error',message:'password is incorrect'});
                 }
+            })
+          }
+            
+        }).  
+        catch((err)=>{
+            if(err){
+
+                console.log(err);
+                res.status(403).json(err);
             }
             else{
-                res.status(404).send({type:error,message:'User does not exist'});
+                console.log(err);
+                res.status(500).send(err);
             }
-        }).catch((err)=>{
-            console.log(err);
-            res.status(403).json(err);
         })
+        
     }
 
 }

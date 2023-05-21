@@ -6,7 +6,11 @@
 body{
     display: flex;
     /* flex-direction: column; */
+   
+ 
+background-color:#3BB9FF;
     
+
 }
 
 .left{
@@ -39,6 +43,7 @@ body{
     align-items: center;
     flex-direction: column;
     gap: 0.5rem;
+  
 }
 
 .right{

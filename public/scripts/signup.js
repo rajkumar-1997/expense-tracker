@@ -16,7 +16,7 @@ form.addEventListener('submit',(e)=>{
           }
         console.log(response)
     }).catch((err)=>{
-        notify(err.response.data);
+        // notify(err.response.data);
         console.log(err);
     })
 
