@@ -14,7 +14,7 @@ form.addEventListener('submit',(e)=>{
         password: password,
       }).then((response)=>{
         if(response.status==200){
-            window.location.href='../expense/expense';
+            window.location.href='../expense/addexpense';
 
         }
      else {

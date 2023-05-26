@@ -14,9 +14,14 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
 
 const userRoutes=require('./routes/user');
-// app.use('/user',userRoutes);
+const expenseRoutes=require('./routes/expense')
 
+
+
+const User = require("./models/user");
+const Expense = require("./models/expense");
 app.use('/user',userRoutes);
+app.use('/expense',expenseRoutes);
 app.use((req,res) => {
     let url = req.url
    
@@ -28,7 +33,8 @@ app.use((req,res) => {
 //     res.status(404).send("<h1>Oops...Page Not Found</h1>");
 //   });
 
-
+User.hasMany(Expense);
+Expense.belongsTo(User);
 
 
 

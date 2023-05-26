@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenseBuzz-Add your expense</title>
+    <link rel="stylesheet" href="../../styles/addexpense.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+<header class="header">
+       <h3>Day to Day Expenses</h3>
+      <nav id="nav">
+         <button id="nav-daily-btn" class="nav-btn active">Daily</button>
+         <button id="nav-monthly-btn" class="nav-btn">Monthly</button>
+         <button id="nav-yearly-btn" class="nav-btn">Yearly</button>
+      </nav>
+
+      <section class="user-container" id="user-container">
+        <i class="fa-solid fa-user" style="color: #071245;"></i>
+      </section>
+</header>
+
+<div class="main-container">
+    <div id="flex-container">
+
+        <!-- ------------------daily-expense table------------------- -->
+        <section class="container" id="daily-container">
+            <div class="info-bar" id="daily-info-bar">
+                <button class="left-btn info-btn">
+                  <i class="fa fa-chevron-left" aria-hidden="true"></i>
+                </button>
+                <span class="date" id="0">11 june 2023</span>
+                <button class="right-btn info-btn">
+                  <i class="fa fa-chevron-right" aria-hidden="true"></i>
+                </button>
+              </div>
+
+              <div class="expense-container" id="daily-expense-container">
+                
+             
+                  
+                <div class="expense-bar">
+                  <div class="bar">
+                      <button class="bar-des-btn" id="bar-des-btn">Movie<svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
+                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
+                      </svg> <svg id="eye-close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
+                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
+                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
+                        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
+                      </svg></button>
+                      <div class="amount">4000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
+                     
+                      <div class="bar-btn">
+                          <button class="bar-delete-btn">Delete</button>
+                      </div>
+                      
+                  </div>
+                  <div class="description" id="des">fiver test</div>
+              </div>
+ 
+
+              </div>
+              <div class="daily-total">
+                Total&nbsp;<span id="daily-sum">4000</span>
+                <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
+              </div>
+        </section>
+
+        <!-- ------------------monthly-expense table------------------- -->
+        <section class="container" id="monthly-container">
+          <div class="info-bar" id="monthly-info-bar">
+              <button class="left-btn info-btn">
+                <i class="fa fa-chevron-left" aria-hidden="true"></i>
+              </button>
+              <span class="month" id="0">June 2023</span>
+              <button class="right-btn info-btn">
+                <i class="fa fa-chevron-right" aria-hidden="true"></i>
+              </button>
+            </div>
+
+            <div class="expense-container" id="montly-expense-container">
+              <div class="expense-bar">
+                  <div class="bar">
+                      <button class="bar-des-btn">Category<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                      </svg></button>
+                      <div class="amount">12000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
+                      <div class="bar-btn">
+                          <button class="bar-delete-btn">Delete</button>
+                      </div>
+                      
+                  </div>
+                  <div class="description" id="des">Shopping</div>
+              </div>
+
+            </div>
+            <div class="monthly-total">
+              Total&nbsp;<span id="monthly-sum">12000</span>
+              <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
+            </div>
+      </section>
+
+      <!-- ------------------yearly-expense table------------------- -->
+      <section class="container" id="yearly-container">
+        <div class="info-bar" id="yearly-info-bar">
+            <button class="left-btn info-btn">
+              <i class="fa fa-chevron-left" aria-hidden="true"></i>
+            </button>
+            <span class="year" id="0">2023</span>
+            <button class="right-btn info-btn">
+              <i class="fa fa-chevron-right" aria-hidden="true"></i>
+            </button>
+          </div>
+
+          <div class="expense-container" id="yearly-expense-container">
+            <div class="expense-bar">
+                <div class="bar">
+                    <button class="bar-des-btn">Category<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
+                    </svg></button>
+                    <div class="amount">150000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
+                    <div class="bar-btn">
+                        <button class="bar-delete-btn">Delete</button>
+                    </div>
+                    
+                </div>
+                <div class="description" id="des">Shopping</div>
+            </div>
+
+          </div>
+          <div class="yearly-total">
+            Total&nbsp;<span id="yearly-sum">150000</span>
+            <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
+          </div>
+    </section>
+    </div>
+</div>
+
+<footer>
+  <!-- ----------------pagination----------------- -->
+  <section class="pagination" id="pagination-container">
+    <label for="row-per-page">Row-per-page: </label>
+    <select name="row-per-page" id="row-per-page">
+      <option value="5" selected>5</option>
+      <option value="8" >8</option>
+      <option value="10" >10</option>
+      
+      <option value="20" >20</option>
+      <option value="40" >40</option>
+    </select>
+    <span id="page-info">1-5 of X</span>
+        <span class="page-btns" id="1">
+          <button id="page-btn-left" disabled>
+            <i class="fa fa-chevron-left" aria-hidden="true"></i>
+          </button>
+          &nbsp;&nbsp;&nbsp;
+          <button id="page-btn-right" disabled>
+            <i class="fa fa-chevron-right" aria-hidden="true"></i>
+          </button>
+        </span>
+  </section>
+
+  <!-- ---------------------------add-expense-section-------------------- -->
+  <section id="add-expense-container" >
+    <div class="add-expense" id="add-expense">
+      <h3 >Add Expense</h3>
+      <form>
+        <div class="form-control">
+          <select name="category" id="category">
+            <option value="" selected>Select Category</option>
+            <option value="Movie">Movie</option>
+            <option value="Vacation">Vacation</option>
+            <option value="Travel">Travel</option>
+            <option value="Medical">Medical</option>
+            <option value="Grocery">Grocery</option>
+            <option value="Life-Style">Life-Style</option>
+          </select>
+        </div>
+        <div class="form-control">
+          <input
+          type="number"
+          name="amount"
+          required
+          placeholder="Enter Amount"
+        />
+        </div>
+        <div class="form-control">
+          <textarea
+            name="description"
+            id="description-input"
+            cols="10"
+            rows="7"
+            placeholder="Describe here"
+          ></textarea>
+        </div>
+        <button class="add-expense-btn" type="submit">Submit</button>
+      </form>
+    </div>
+    
+    
+    
+  
+  </section>
+  <div class="plus-cross-btn-div">
+    <button class="plus-btn" id="plus-btn">+</button>
+    <button class="cross-btn" id="cross-btn">×</button>
+  </div>
+  
+ 
+
+  <h1>Expense Manager&nbsp;<sup id="pro"></sup></h1>
+</footer>
+<script src="../../scripts/expense.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+</html>

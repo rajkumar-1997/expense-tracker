@@ -19,5 +19,9 @@ form.addEventListener('submit',(e)=>{
         // notify(err.response.data);
         console.log(err);
     })
+    e.target.name.value="";
+    e.target.email.value="";
+    e.target.password.value="";
+
 
 })
