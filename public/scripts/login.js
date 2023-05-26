@@ -14,6 +14,7 @@ form.addEventListener('submit',(e)=>{
         password: password,
       }).then((response)=>{
         if(response.status==200){
+            localStorage.setItem("sessionToken",response.data.sessionToken);
             window.location.href='../expense/addexpense';
 
         }

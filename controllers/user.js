@@ -1,8 +1,11 @@
 const User=require('../models/user');
 const path=require('path')
 const bcrypt=require('bcrypt');
-
+const jwt=require('jsonwebtoken');
 const saltRounds=10;
+require('dotenv').config();
+ 
+const JWT_SECRET_KEY=process.env.JWT_SECRET_KEY;
 
 
 function  isNotValid(str){
@@ -37,21 +40,17 @@ exports.signUp=(req,res,next)=>{
      
           
         }).catch((err)=>{
-            if(err.type=='error'){
-                res.status(403).send(err);
-            }
-            else{
-                console.log(err);
-                res.status(500).send(err);
-            }
+            console.log(err);
+                res.status(500).json(err);
         })
     }
 }
 
+
 exports.logIn=(req,res,next)=>{
    
     const {email,password}=req.body;
-    console.log(req.body);
+    // console.log(req.body);
 
     if( isNotValid(email) || isNotValid(password)){
         return res.status(400).send({type:'error',message:'Invalid Form Data!'})
@@ -62,12 +61,15 @@ exports.logIn=(req,res,next)=>{
                    throw{type:'error',message:"user not found!"};
             }
           else{
-            bcrypt.compare(password,users[0].password,(err,result)=>{
+            const user=users[0]
+            bcrypt.compare(password,user.password,(err,result)=>{
                 if(err){
                     res.status(500).send({type:'error',message:'someting went wrong!'})
                 }
                 if(result==true){
-                    res.status(200).send({message:'logged in successfully'})
+                    const token=jwt.sign({userId:user.id,userEmail:user.email},JWT_SECRET_KEY);
+                    console.log(token)
+                    res.status(200).send({message:'logged in successfully',  sessionToken: token})
                 }
                 else{
                     res.status(404).send({type:'error',message:'password is incorrect'});
@@ -77,15 +79,11 @@ exports.logIn=(req,res,next)=>{
             
         }).  
         catch((err)=>{
-            if(err){
-
+            
+           
                 console.log(err);
-                res.status(403).json(err);
-            }
-            else{
-                console.log(err);
-                res.status(500).send(err);
-            }
+                res.status(500).json(err);
+          
         })
         
     }

@@ -1,5 +1,7 @@
 // const { notify } = require("../../routes/user");
 
+
+
 const plusBtn = document.getElementById('plus-btn');
 const crossBtn=document.getElementById('cross-btn');
 const addExpenseContainer=document.getElementById('add-expense-container');
@@ -132,53 +134,63 @@ dailyInfoBar.addEventListener('click',(e)=>{
   if(e.target.closest('.left-btn')){
     pageBtns.id=1;
     dateEle.id-=1;
-    // loadDailyExpenseData(dateEle.id,1)
+    loadDailyExpenseData(dateEle.id,1)
   }
   if (e.target.closest(".right-btn")) {
     pageBtns.id = 1;
     dateEle.id = dateEle.id + 1;
-    // loadDailyExpenseData(dateEle.id, 1);
+    loadDailyExpenseData(dateEle.id, 1);
   }
 })
 
-form.addEventListener('submit',(e)=>{
-  e.preventDefault();
-  console.log(dateEle[0].id);
-  axios.post(`http://localhost:3000/expense/addexpense?dateNumber=${dateEle[0].id}`,{
-    category: e.target.category.value,
-    amount: e.target.amount.value,
-    description: e.target.description.value,
-  }).then((response)=>{
-    if(response.status===201){
-      // notify(response.data.notification);
-      // // showDailyExpense(response.data.expense);
-      // dailySum.innerHTML = "<i class='fa fa-refresh' aria-hidden='true'></i>";
-      // e.target.category.value = "";
-      // e.target.amount.value = "";
-      // e.target.description.value = "";
+
+window.addEventListener("DOMContentLoaded", loadExpenseData);
+
+function loadExpenseData() {
+  loadDailyExpenseData(0, 1);
+  // pageBtns.id = 1;
+}
+
+function  loadDailyExpenseData(dateNumber, page){
+ 
+     const token=localStorage.getItem('sessionToken');
+     axios.get(`http://localhost:3000/expense/get-by-date?dateNumber=${dateNumber}`,
+     {
+      headers: {
+        Authorization: token,
+      },
     }
-    else {
-      throw { response: response };
-    }
-  }).catch((error)=>{
-    console.log(error);
-    notify(err.response.data);
-  });
-  dailySum.innerHTML = "<i class='fa fa-refresh' aria-hidden='true'></i>";
-  e.target.category.value = "";
-  e.target.amount.value = "";
-  e.target.description.value = "";
-  
-});
+    ).then((response)=>{
+      if(response.status==200){
+        const { expenses, date, totalAndCount } = response.data;
+        console.log(date);
+        dailyExpenseContainer.innerText = "";
+        dateEle[0].innerText = date;
+        if (totalAndCount.total) {
+          dailySum.innerText = totalAndCount.total;
+        } else {
+          dailySum.innerText = 0;
+        }
+
+        expenses.forEach((expense) => {
+          showDailyExpense(expense,date);
+        });
 
 
-
-
+      }
+      else {
+        throw { response: response };
+      }
+    }).catch((error)=>{
+        console.log(error)
+    })
+}
 
 
 //show output on frontend
 
 function showDailyExpense(expenseData){
+  
   const textNode=` <div class="expense-bar">
   <div class="bar">
       <button class="bar-des-btn" id="bar-des-btn">${expenseData.category}<svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
@@ -201,5 +213,56 @@ function showDailyExpense(expenseData){
 
 dailyExpenseContainer.innerHTML += textNode;
 }
+
+
+form.addEventListener('submit',(e)=>{
+  e.preventDefault();
+  const token=localStorage.getItem('sessionToken');
+  console.log(dateEle[0].id);
+  axios.post(`http://localhost:3000/expense/addexpense?dateNumber=${dateEle[0].id}`,{
+    category: e.target.category.value,
+    amount: e.target.amount.value,
+    description: e.target.description.value,
+  },
+  {
+    
+      headers: {
+        Authorization: token,
+      },
+    
+  }
+  
+  ).then((response)=>{
+    if(response.status===201){
+      // notify(response.data.notification);
+      // // showDailyExpense(response.data.expense);
+      // dailySum.innerHTML = "<i class='fa fa-refresh' aria-hidden='true'></i>";
+      // e.target.category.value = "";
+      // e.target.amount.value = "";
+      // e.target.description.value = "";
+    }
+    else {
+      throw { response: response };
+    }
+  }).catch((error)=>{
+    console.log(error);
+    // notify(err.response.data);
+  });
+  dailySum.innerHTML = "<i class='fa fa-refresh' aria-hidden='true'></i>";
+  e.target.category.value = "";
+  e.target.amount.value = "";
+  e.target.description.value = "";
+  
+});
+
+
+
+
+
+
+
+
+
+
 
 
