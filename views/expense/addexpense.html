@@ -31,7 +31,7 @@
                 <button class="left-btn info-btn">
                   <i class="fa fa-chevron-left" aria-hidden="true"></i>
                 </button>
-                <span class="date" id="0">10 june 2023</span>
+                <span class="date" id="0"></span>
                 <button class="right-btn info-btn">
                   <i class="fa fa-chevron-right" aria-hidden="true"></i>
                 </button>
@@ -53,18 +53,18 @@
                       </svg></button>
                       <div class="amount">4000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
                      
-                      <div class="bar-btn">
+                
                           <button class="bar-delete-btn">Delete</button>
-                      </div>
+                    
                       
                   </div>
-                  <div class="description" id="des">fiver test</div>
+                  <div class="description" id="des">Gajni movie</div>
               </div>
  
 
               </div>
               <div class="daily-total">
-                Total&nbsp;<span id="daily-sum">4000</span>
+                Total&nbsp;<span id="daily-sum"></span>
                 <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
               </div>
         </section>
@@ -81,24 +81,23 @@
               </button>
             </div>
 
-            <div class="expense-container" id="montly-expense-container">
-              <div class="expense-bar">
-                  <div class="bar">
-                      <button class="bar-des-btn">Category<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                        <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                      </svg></button>
-                      <div class="amount">12000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
-                      <div class="bar-btn">
-                          <button class="bar-delete-btn">Delete</button>
-                      </div>
+            <div class="expense-container" id="monthly-expense-container">
+            
+              <div class="expense-bar monthly-expense-bar" id="monthly-expense-bar" >
+                 <!-- <div class="expense-bar-child">
+                    <h3>12 May</h3>
+                  <div class="bar monthly-bar ">
+                      <span>Category </span>  <span>Shopping</span>
+                      <span>12000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></span>
                       
-                  </div>
-                  <div class="description" id="des">Shopping</div>
-              </div>
+                 </div>
+                  
+              </div> -->
+            </div>
 
             </div>
             <div class="monthly-total">
-              Total&nbsp;<span id="monthly-sum">12000</span>
+              Total Monthly Expense =&nbsp;<span id="monthly-sum">0</span>
               <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
             </div>
       </section>
@@ -116,23 +115,23 @@
           </div>
 
           <div class="expense-container" id="yearly-expense-container">
-            <div class="expense-bar">
-                <div class="bar">
-                    <button class="bar-des-btn">Category<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
-                      <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z"/>
-                    </svg></button>
-                    <div class="amount">150000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
-                    <div class="bar-btn">
-                        <button class="bar-delete-btn">Delete</button>
-                    </div>
-                    
-                </div>
-                <div class="description" id="des">Shopping</div>
+            <div class="expense-bar  yearly-expense-bar"  id="yearly-expense-bar">
+              
+                 <!-- <div class="expense-bar-child">
+                    <h3>12 May</h3>
+                  <div class="bar yearly-bar ">
+                      <span>Category </span> 
+                      <span>12000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></span>
+                      
+                 </div>
+                  <div class=" totalMonthlyExpense" >Shopping</div>
+              </div> -->
+                
             </div>
 
           </div>
           <div class="yearly-total">
-            Total&nbsp;<span id="yearly-sum">150000</span>
+            Total Yearly Expense = &nbsp;<span id="yearly-sum">150000</span>
             <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
           </div>
     </section>
@@ -211,7 +210,7 @@
   
  
 
-  <h1>Expense Manager&nbsp;<sup id="pro"></sup></h1>
+  <h1>ExpenseBuzz&nbsp;<sup id="pro"></sup></h1>
 </footer>
 <script src="../../scripts/expense.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

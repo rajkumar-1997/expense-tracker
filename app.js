@@ -15,11 +15,15 @@ app.use(express.static(path.join(__dirname,'public')));
 
 const userRoutes=require('./routes/user');
 const expenseRoutes=require('./routes/expense')
+const orderRoutes=require('./routes/order');
+
+
 
 
 
 const User = require("./models/user");
 const Expense = require("./models/expense");
+const Order=require('./models/order');
 app.use('/user',userRoutes);
 app.use('/expense',expenseRoutes);
 app.use((req,res) => {
@@ -35,7 +39,8 @@ app.use((req,res) => {
 
 User.hasMany(Expense);
 Expense.belongsTo(User);
-
+User.hasMany(Order);
+Order.belongsTo(User);
 
 
 sequelize.sync().then(result=>{

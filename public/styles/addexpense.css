@@ -14,6 +14,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    
 }
 
 .header>h3{
@@ -55,6 +56,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+ 
    
    
 }
@@ -91,7 +93,7 @@ body{
 #daily-info-bar{
    display: flex;
    flex-direction: row;
-  
+   align-items: center;
   justify-content: space-between;
    background-color: rgb(5, 100, 92);
    color: rgb(253, 242, 242);
@@ -114,6 +116,7 @@ body{
     padding: 0.5rem 0.1rem;
     margin-top: 0.3rem;
     border-radius: 0.3rem;
+   
    
    
  }
@@ -145,17 +148,49 @@ body{
     color: rgb(253, 242, 242);
 }
 
+.info-btn>i{
+   font-size: 1.3rem;
+   width: 1.4rem;
+}
+
 
 .expense-container{
     display: flex;
     flex-direction: column;
 
 }
+
 .expense-bar{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    background-color: rgb(253, 242, 242); 
+    background-color:  rgb(182 227 241 / 38%);
+}
+.monthly-expense-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin: 0.2rem 0.2rem;
+    padding: 0.5rem 0.5rem;
+    /* border: 1px solid black; */
+    gap: 0.5rem;
+   
+}
+
+.yearly-expense-bar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* align-items: center; */
+    margin: 0.2rem 0.2rem;
+    padding: 0.5rem 0.5rem;
+    /* border: 1px solid black; */
+    gap: 0.5rem;
+   
+}
+.monthly-expense-bar>h3{
+    text-align: center;
 }
 .bar{
     display: flex;
@@ -167,6 +202,22 @@ body{
     padding: 0.3rem 0;
    
 }
+.expense-bar-child{
+    border: 1px solid black;
+}
+
+.expense-bar-child>h3{
+    text-align: center;
+}
+.monthly-bar{
+     display: flex;
+     flex-direction: row;
+     justify-content: space-between;
+     align-items: center;
+     padding: 0.2rem 0.2rem;
+   
+}
+
 .bar div{
   
     display: flex;
@@ -198,7 +249,7 @@ body{
     font-size: 1.1rem;
     display: flex;
     flex-direction: row;
-    
+    background-color: transparent;
     padding: 0.2rem 0.1;
     cursor: pointer;
 }
@@ -217,8 +268,19 @@ body{
 }
 
 
+.description{
+    display: flex;
+    /* justify-content: center; */
+    align-items: center;
+    margin-left: 0.4rem;
+}
+
 #des{
     display: none;
+}
+
+.monthly-daily-description{
+    display: block;
 }
 .daily-total{
     background-color: #9deeee;
