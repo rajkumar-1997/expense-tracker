@@ -1,3 +1,12 @@
+:root {
+    --blue1: rgb(249, 247, 247);
+    --blue2: rgb(219, 226, 239);
+    --blue3: rgb(63, 114, 175);
+    --blue4: rgb(17, 45, 78);
+  }
+  *{
+    box-sizing: border-box;
+  }
 body{
     padding: 0;
     margin: 0;
@@ -14,6 +23,7 @@ body{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+   
     
 }
 
@@ -44,12 +54,166 @@ body{
     opacity: 1;
 }
 
-.user-container{
+
+#rzp_button{
     position: absolute;
-    top:1.7rem;
-    left: 1rem;
-    font-size: 2rem;
+    top: 3rem;
+    left:3rem
 }
+
+.user-container {
+    position: absolute;
+    top: 1.95rem;
+    left: 1.7rem;
+    color: var(--blue4);
+    z-index: 1;
+   
+   
+  }
+  
+  .user-btn {
+    background-color: inherit;
+    cursor: pointer;
+    width: 1.7rem;
+    height: 1.75rem;
+    border-radius: 50%;
+    padding: 0;
+    border: 0;
+    font-size: 1.5rem;
+    color:rgb(5, 100, 92);
+  }
+  
+  .user {
+    position: absolute;
+    top: 2.18rem;
+    width: 18rem;
+    background-color: #fff;
+    border-radius: 5px;
+    display: none;
+  }
+  
+  .user-name {
+    padding: 0.6rem;
+    border-bottom: 1px solid rgba(45, 45, 45, 0.15);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .user-name > h3 {
+    margin: 0.62rem 0 0 0;
+ 
+  }
+  
+  .user-name p {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+    opacity: 0.7;
+  }
+  
+  .features {
+    padding: 0.6rem;
+  }
+  
+  #normal-feature {
+    text-align: left;
+    /* display: none; */
+    border-bottom: 1px solid rgba(45, 45, 45, 0.15);
+  }
+  
+  #normal-feature ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  #normal-feature ul li {
+    border-bottom: 1px solid rgba(45, 45, 45, 0.1);
+    padding-bottom: 0.12rem;
+  }
+  
+  #normal-feature ul p {
+    margin: 0 1.25px;
+    font-size: 0.9rem;
+    opacity: 0.7;
+  }
+  
+  #normal-feature h3 {
+    margin-top: 0;
+    margin-bottom: 0.6rem;
+  }
+  
+  #normal-feature .upgrade-btn {
+    text-align: center;
+    margin-top: 0.6;
+  }
+  
+  #normal-feature .upgrade-btn button {
+    padding: 0.43rem;
+    width: 7.5rem;
+    cursor: pointer;
+    border: 1px solid #49c7bfbd;
+    border-radius: 0.12rem;
+    background-color: #49c7bfbd;
+    color: #fff;
+    transition: color 0.2s ease, background-color 0.2s ease;
+  }
+  
+  /* #normal-feature .upgrade-btn button:hover {
+    background-color: #fff;
+    color:  #49c7bfbd;
+  }
+   */
+  #premium-feature {
+    padding-top: 1.1;
+    display: none;
+    flex-direction: column;
+  }
+  
+  #premium-feature button {
+    background-color: var(--blue1);
+    width: 100%;
+    text-align: left;
+    font-size: medium;
+    cursor: pointer;
+    padding: 0.62;
+    border: 1px solid rgba(45, 45, 45, 0.15);
+  }
+  
+  #premium-feature button:hover {
+    background-color:rgb(5, 100, 92);
+    color: #fff;
+  }
+  
+  .user a{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+  }
+  .user button.logout {
+    width: 6.2rem;
+    height: 2rem;
+    margin: 0.62rem;
+   background-color:  rgb(5, 100, 92);
+    cursor: pointer;
+    border: none;
+    outline: none;
+    color: #fff;
+    border-radius: 0.2rem;
+  }
+  
+  .user-container.show-user .user {
+    display: block;
+  }
+  
+  /* .user-container.show-user .user-btn {
+    background-color: #fff;
+    color:   rgb(5, 100, 92);
+  } */
+  
 
 .main-container{
     display: flex;
@@ -354,7 +518,7 @@ footer h1{
     align-items: center;
     width: 100%;
   gap: 1rem;
-  padding: 0.5rem 2rem;
+  padding: 0.5rem 1rem;
 }
 .form-control{
     width: 100%;
@@ -410,7 +574,7 @@ footer h1{
     /* position: absolute;
     bottom: 5.5rem ;
     right: 1.1rem; */
-    background-color:  rgb(5, 100, 92);;
+    background-color:  rgb(5, 100, 92);
     border-radius: 2rem 2rem;
     outline: none;
     width: 3rem;

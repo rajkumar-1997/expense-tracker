@@ -3,6 +3,8 @@ const path=require('path')
 const bcrypt=require('bcrypt');
 const jwt=require('jsonwebtoken');
 const saltRounds=10;
+
+const Order = require("../models/order");
 require('dotenv').config();
  
 const JWT_SECRET_KEY=process.env.JWT_SECRET_KEY;
@@ -89,3 +91,31 @@ exports.logIn=(req,res,next)=>{
     }
 
 }
+
+exports.isUserPremium=(req,res,next)=>{
+    Order.findOne({where:{status:"SUCCESSFUL",userId:req.user.id}})
+    .then((order)=>{
+        if(order){
+            console.log(order);
+            res.status(200).send({
+                isPremium:true  ,
+                 userName:req.user.name,
+                 userEmail:req.user.email,
+                
+                
+                });
+         
+        }
+        else{
+            return res.status(200).send({
+                isPremium: false,
+          userName: req.user.name,
+          userEmail: req.user.email, 
+            })
+        }
+    }).catch((err) => {
+        console.log(err);
+        res.status(500).send(err);
+      });
+}
+

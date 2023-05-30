@@ -26,6 +26,7 @@ const Expense = require("./models/expense");
 const Order=require('./models/order');
 app.use('/user',userRoutes);
 app.use('/expense',expenseRoutes);
+app.use('/order',orderRoutes);
 app.use((req,res) => {
     let url = req.url
    

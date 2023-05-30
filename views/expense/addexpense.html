@@ -16,10 +16,95 @@
          <button id="nav-monthly-btn" class="nav-btn">Monthly</button>
          <button id="nav-yearly-btn" class="nav-btn">Yearly</button>
       </nav>
+        
+      <!-- -------------user-section------------- -->
+    
+     <!-- user -->
+     <section class="user-container" id="user-container">
+      <div class="user" id="user">
+        <div class="user-name">
+          <span class="fa-stack">
+            <i class="fa fa-square-o fa-stack-2x"></i>
+            <i class="fa fa-user fa-stack-1x"></i>
+          </span>
+          <h3 id="user-name">Rajkumar Jangam</h3>
+          <p id="user-email">rajkumarjangam66@gmail.com</p>
+        </div>
+        <div class="user-profile">
+          <div id="premium-feature" class="features">
+            <button id="leaderboard-btn">
+              &nbsp;<i class="fa fa-tasks" aria-hidden="true"></i
+              >&nbsp;Leaderboard
+            </button>
+            <button id="download-btn">
+              &nbsp;<i class="fa fa-download" aria-hidden="true"></i
+              >&nbsp;Download Data
+            </button>
+            <button id="download-history-btn">
+              &nbsp;<i class="fa fa-history" aria-hidden="true"></i>&nbsp;All
+              Downloads
+            </button>
+         
+          </div>
+          <div id="normal-feature" class="features">
+            <h3>ExpenseBuzz Premium Features</h3>
+            <ul class="premium-feature-list">
+              <li>
+                <i class="fa fa-calculator" aria-hidden="true"></i> Monthly
+                Expenses <br />
+                <p>See total expense of a month</p>
+              </li>
+              <li>
+                <i class="fa fa-calendar" aria-hidden="true"></i> Yearly
+                Expenses <br />
+                <p>See month-wise expense of a year</p>
+              </li>
+              
+              
+              <li>
+                <i class="fa fa-tasks" aria-hidden="true"></i> Leaderboard
+                <br />
+                <p>See your expense compare to others</p>
+              </li>
+              <li>
+                <i class="fa fa-download" aria-hidden="true"></i> Download
+                features <br />
+                <p>Get your data and download history</p>
+              </li>
+            </ul>
+            <div class="upgrade-btn">
+              <button id="rzp-button">
+               Upgrade Now
+              </button>
+            </div>
+          </div>
+        </div>
+        <a href="../user/login"
+          ><button class="logout">
+            <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
+          </button></a
+        >
+      </div>
+      <button class="user-btn" id="user-btn">
+        <i class="fa fa-user-circle"></i>
+      </button>
+    </section> 
 
-      <section class="user-container" id="user-container">
-        <i class="fa-solid fa-user" style="color: #071245;"></i>
+       <!-- toast notification -->
+       <!-- <section class="toast" id="toast">
+        <div class="toast-content" id="toast-content">
+          <i
+            class="fa fa-check-circle fa-2x"
+            aria-hidden="true"
+            style="color: green"
+          ></i>
+          <div class="message">
+            <span class="text text-1">Success</span>
+            <span class="text text-2">Your changes has been saved</span>
+          </div>
+        </div>
       </section>
+      <!-- <button id="rzp_button">Buy Premium</button> -->
 </header>
 
 <div class="main-container">
@@ -212,7 +297,11 @@
 
   <h1>ExpenseBuzz&nbsp;<sup id="pro"></sup></h1>
 </footer>
+
+<script src="../../scripts/profile.js" ></script>
 <script src="../../scripts/expense.js"></script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 </body>
 </html>

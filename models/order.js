@@ -1,25 +1,17 @@
-const Sequelize=require("sequelize");
-const sequelize=require('../util/database');
+const {Sequelize} = require("sequelize")
 
-const Order=sequelize.define("orders",{
-    id:{
-        type:Sequelize.STRING,
-        allowNull:false,
-        primaryKey:true,
-    },
+const sequelize = require("../util/database")
 
-    paymentId:{
-        type:Sequelize.STRING,
-        allowNull:true,
+const Order = sequelize.define('order',{
+    id : {
+        type : Sequelize.INTEGER,
+        allowNull : false,
+        autoIncrement : true,
+        primaryKey : true
     },
-    amount:{
-        type:Sequelize.INTEGER,
-        allowNull:false,
-    },
-    status:{
-      type:Sequelize.STRING,
-      defaultValue:"PENDING"
-    },
+    paymentId : Sequelize.STRING ,
+    orderId : Sequelize.STRING,
+    status : Sequelize.STRING
 })
 
 module.exports = Order;
