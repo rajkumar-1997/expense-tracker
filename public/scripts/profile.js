@@ -17,6 +17,7 @@ const historyHeading=document.getElementById('history-heading');
 const flexContainer = document.getElementById("flex-container");
 const paginationContainer = document.getElementById("pagination-container");
 const leaderboardContainer = document.getElementById( "leaderboard-expense-container");
+
 const userBtn=document.getElementById('user-btn');
 const user=document.getElementById('user');
 
@@ -72,7 +73,7 @@ function enablePremium() {
   nav.style.visibility = "visible"; // Commented out as nav variable is not defined in the provided code
   premiumFeature.style.display = "flex";
   normalFeature.style.display = "none";
-  leaderbordBtn.addEventListener("click", leaderbordHandler);
+  
   leaderbordBtn2.addEventListener("click", leaderbordHandler);
 
  
@@ -86,6 +87,45 @@ function disablePremium() {
   rzpBtn.addEventListener('click', createOrder);
 
 }
+
+
+let leaderbordBtnClicked=true;
+ function openLeaderboard(){
+  if(leaderbordBtnClicked){
+    nav.style.display='none';
+    dailyContainer.style.display='none';
+    // monthlyContainer.style.display='none';
+    // yearlyContainer.style.display='none';
+     plusBtn.style.display='none';
+      
+     paginationContainer.style.display='none';
+    document.getElementById("leaderboard-container").style.display="block";
+    leaderbordHandler();
+    leaderbordBtnClicked=false;
+  }
+  else{
+    nav.style.display='flex';
+    dailyContainer.style.display='flex';
+    // monthlyContainer.style.display='block';
+    // yearlyContainer.style.display='block';
+     plusBtn.style.display='flex';
+      
+     paginationContainer.style.display='flex';
+    document.getElementById("leaderboard-container").style.display="none";
+    // leaderbordHandler();
+    leaderbordBtnClicked=true;
+  }
+}
+
+//  nav.style.display='none';
+//   dailyContainer.style.display='none';
+//   monthlyContainer.style.display='none';
+//   yearlyContainer.style.display='none';
+//    plusBtn.style.display='none';
+    
+//    paginationContainer.style.display='none';
+//   document.getElementById("leaderboard-container").style.display="block";
+//   leaderbordHandler();
  
 function leaderbordHandler(){
   const token=localStorage.getItem('sessionToken');
@@ -99,9 +139,8 @@ function leaderbordHandler(){
   }).then((response)=>{
     if(response.status==200){
       console.log(response.data);
-      plusBtn.style.display='none';
-      paginationContainer.style.display='none';
-      const leaderBoardExpenseBar=document.getElementById('leadernoard-expense-bar');
+     
+      const leaderBoardExpenseBar=document.getElementById('leaderboard-expense-bar');
 
      leaderBoardExpenseBar.innerText="";
       userContainer.classList.remove('show-user');
@@ -128,7 +167,7 @@ function leaderbordHandler(){
 }
 
 function showLeaderboard(leaderboardData, highlight) {
-  const leaderBoardExpenseBar = document.getElementById('leadernoard-expense-bar');
+  const leaderBoardExpenseBar = document.getElementById('leaderboard-expense-bar');
 
   if (!leaderBoardExpenseBar) {
     console.error("Element with ID 'leadernoard-expense-bar' not found.");
