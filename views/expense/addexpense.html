@@ -73,9 +73,8 @@
               </li>
             </ul>
             <div class="upgrade-btn">
-              <button id="rzp-button">
-               Upgrade Now
-              </button>
+              <button id="rzp-button"> <i class="fa fa-angle-double-up" aria-hidden="true"></i
+                >&nbsp; Upgrade Now</button>
             </div>
           </div>
         </div>
@@ -85,7 +84,7 @@
           </button></a
         >
       </div>
-      <button class="user-btn" id="user-btn">
+      <button class="user-btn" id="user-btn" onclick="showhideprofile()">
         <i class="fa fa-user-circle"></i>
       </button>
     </section> 
@@ -106,7 +105,7 @@
       </section>
       <!-- <button id="rzp_button">Buy Premium</button> -->
 </header>
-
+<main>
 <div class="main-container">
     <div id="flex-container">
 
@@ -128,7 +127,7 @@
                   
                 <div class="expense-bar">
                   <div class="bar">
-                      <button class="bar-des-btn" id="bar-des-btn">Movie<svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
+                      <button class="bar-des-btn" id="bar-des-btn"><svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                         <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
                         <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
                       </svg> <svg id="eye-close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
@@ -136,20 +135,20 @@
                         <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
                         <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
                       </svg></button>
-                      <div class="amount">4000&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
+                      <div class="amount">&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
                      
                 
-                          <button class="bar-delete-btn">Delete</button>
+                          <button class="bar-delete-btn"></button>
                     
                       
                   </div>
-                  <div class="description" id="des">Gajni movie</div>
+                  <div class="description" id="des"></div>
               </div>
  
 
               </div>
               <div class="daily-total">
-                Total&nbsp;<span id="daily-sum"></span>
+                Total = &nbsp;<span id="daily-sum">0</span>
                 <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
               </div>
         </section>
@@ -216,13 +215,51 @@
 
           </div>
           <div class="yearly-total">
-            Total Yearly Expense = &nbsp;<span id="yearly-sum">150000</span>
+            Total Yearly Expense = &nbsp;<span id="yearly-sum">0</span>
             <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i>
           </div>
     </section>
+
+    <!-- -----------------leaderboard-------------- -->
+<section class="conatiner" id="leaderboard-container">
+  <div class="info-bar" style="justify-content: center">
+    <span class="leaderboard-heading">
+      Leaderboard&nbsp;<i
+                class="fa fa-sort-amount-asc"
+                aria-hidden="true"
+              ></i
+            >
+    </span>
+    <span id="history-heading" style="display: none;"
+    >All Downloads</span>
+  </div>
+
+  <div class="expense-container" id="leadernoard-expense-container">
+  <div class="expense-bar leadernoardexpense-bar"  id="leadernoard-expense-bar">
+<!-- <div class="bar">
+<div class="user-name">Rajkumar Jangam</div>
+<div class="user-total">4000 &#x20B9;</div>
+</div> -->
+  </div>
+  </div>
+  
+  <div class="leaderboard-history">
+    <button id="leaderboard-btn2">
+      <i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;LeaderBoard
+    </button>
+    <button id="download-history-btn2">
+      <i class="fa fa-history fa-lg" aria-hidden="true"></i
+      >&nbsp;History
+    </button>
+  </div>
+
+
+</section>
     </div>
 </div>
 
+
+</main>
 <footer>
   <!-- ----------------pagination----------------- -->
   <section class="pagination" id="pagination-container">

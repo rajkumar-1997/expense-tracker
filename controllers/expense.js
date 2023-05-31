@@ -337,6 +337,34 @@ function getEnglishMonthName(month) {
 }
 
 
+exports.getLeaderBoard=async (req,res,next)=>{
+
+
+  try {
+    const users= await User.findAll({
+      include:[{model:Expense,attributes:[]}],
+      attributes:[
+        "id",
+       "name",
+       [Sequelize.fn("SUM",Sequelize.col("amount")),"userTotalExpense"]
+      ],
+      group:["users.id"],
+      order:[["userTotalExpense","DESC"]],
+    })
+    
+    console.log(users);
+    res.status(200).send({userWiseExpense:users,userId:req.user.id});
+  } catch (error) {
+    console.log(error);
+      res.status(500).send(error);
+  }
+
+  
+}
+
+
+
+
 exports.deleteExpense= async (req,res,next)=>{
       const expenseId=req.params.expenseId;
       if(isNotValid(expenseId)){
