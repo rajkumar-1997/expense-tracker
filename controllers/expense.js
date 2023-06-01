@@ -194,16 +194,6 @@ exports.getExpensesByMonth = async (req, res, next) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
 exports.getExpensesByYear = async (req, res, next) => {
   const yearNumber = +req.query.yearNumber;
   console.log(yearNumber);

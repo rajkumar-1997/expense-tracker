@@ -139,12 +139,12 @@ function leaderbordHandler(){
       
       // flexContainer.style.transform="translateX(-1650px)";
     //  display(true,false);
-     response.data.userWiseExpense.forEach((userExpense)=>{
+     response.data.userWiseExpense.forEach((userExpense,index)=>{
       if(userExpense.id==response.data.userId){
-        showLeaderboard(userExpense);
+        showLeaderboard(userExpense,index);
       }
       else {
-        showLeaderboard(userExpense);
+        showLeaderboard(userExpense,index);
       }
      })
 
@@ -158,14 +158,14 @@ function leaderbordHandler(){
   });
 }
 
-function showLeaderboard(leaderboardData) {
+function showLeaderboard(leaderboardData,index) {
   
 
   
 
   const textNode = `
   <div class="bar">
-    <div class="name">${leaderboardData.name}</div>
+    <div class="name"><span>${index+1}. </span>${capitalizeName(leaderboardData.name)}</div>
     <div class="total">${
       leaderboardData.userTotalExpense == null
         ? 0
