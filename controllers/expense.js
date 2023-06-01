@@ -54,62 +54,7 @@ function isNotValid(str) {
   
   };
 
-// exports.getExpensesByDate= async (req,res,next)=>{
-//   const dateNumber=req.query.dateNumber;
-//   if(isNotValid(dateNumber)){
-//     return res.status(400).send({type:'error',message:'Bad query parameter'});
-//   }
 
-//   const now=  new date();
-//   const date=  new date(
-//     now.getFullYear(),
-//     now.getMonth()+1,
-//     now.getDate+parseInt(dateNumber)
-//   );
-//   const dateToSend=  formatDate(date,{
-//     day: "2-digit",
-//     month: "long",
-//     year: "numeric",
-//   });
-
-//   let sumAndCount={count:0,total:0};
-
-//     Expense.findAll({
-//     attributes:[
-//       [Sequelize.fn('COUNT',Sequelize.col("id")),"count"],
-//       [Sequelize.fn('SUM',Sequelize.col("amount")),"total"]
-//     ]
-//     ,
-//     group: ["userId"],
-//     where: {
-//       userId: req.user.id,
-//       date: date.getDate(),
-//       month: date.getMonth(),
-//       year: date.getFullYear(),
-//     },
-
-//   }).then((sumAndCounts)=>{
-//     if(sumAndCounts.length==1){
-//          sumAndCount=sumAndCounts[0];
-//     }
-//     return req.user.getExpenses({
-//       where: {
-//         date: date.getDate(),
-//         month: date.getMonth(),
-//         year: date.getFullYear(),
-//       }
-//     })
-// }).then((expenses)=>{
-//   res.status(200).send({
-//    expenses:expenses,
-//    date:dateToSend,
-//    totalAndCount: sumAndCount,
-//   })
-// }).catch((error)=>{
-//   console.log(error);
-//   res.status(500).send(error);
-// })
-// }
 
 
 exports.getExpensesByDate = async (req, res, next) => {

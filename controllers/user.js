@@ -19,37 +19,41 @@ function  isNotValid(str){
     }
 }
 
-exports.signUp=(req,res,next)=>{
+exports.signUp=async (req,res,next)=>{
     // console.log(req.body);
     const {name,email,password}=req.body;
     if(isNotValid(name) || isNotValid(email) || isNotValid(password)){
         return res.status(400).send({type:'error',message:'Invalid Form Data!'})
     }
-    else{
-        User.findAll({where:{email:email}})
-        .then((users)=>{
-            if(users.length==1){
-                throw{type:"error",message:"User Already Exists!"}
-            }
-            else{
-                bcrypt.hash(password,saltRounds,(err,hash)=>{
-                    console.log(err)
-                    User.create({name,email,password:hash})
-                    res.status(200).send({message:"user created successfully"})
-            })
-       
-            }
-     
-          
-        }).catch((err)=>{
-            console.log(err);
-                res.status(500).json(err);
-        }) 
+    try {
+      
+          const users=await  User.findAll({where:{email:email}})
+           
+                if(users.length==1){
+                    throw{type:"error",message:"User Already Exists!"}
+                }
+                else{
+                    const hash= await bcrypt.hash(password,saltRounds)
+                     
+                      await  User.create({name,email,password:hash})
+                        res.status(200).send({message:"user created successfully"});
+                
+           
+                }
+         
+              
+            }catch(error) {
+                console.log(error);
+                res.status(500).json(error);
+        }
     }
-}
+
+    
+  
 
 
-exports.logIn=(req,res,next)=>{
+
+exports.logIn=async (req,res,next)=>{
    
     const {email,password}=req.body;
     // console.log(req.body);
@@ -57,65 +61,71 @@ exports.logIn=(req,res,next)=>{
     if( isNotValid(email) || isNotValid(password)){
         return res.status(400).send({type:'error',message:'Invalid Form Data!'})
     }
-    else{
-        User.findAll({where:{email}}).then((users)=>{
-            if(users.length==0) {
-                   throw{type:'error',message:"user not found!"};
-            }
-          else{
-            const user=users[0]
-            bcrypt.compare(password,user.password,(err,result)=>{
-                if(err){
-                    res.status(500).send({type:'error',message:'someting went wrong!'})
+
+    try {
+        
+          const users=await  User.findAll({where:{email}})
+                if(users.length==0) {
+                       throw{type:'error',message:"user not found!"};
                 }
-                if(result==true){
-                    const token=jwt.sign({userId:user.id,userEmail:user.email},JWT_SECRET_KEY);
-                    console.log(token)
-                    res.status(200).send({message:'logged in successfully',  sessionToken: token})
-                }
-                else{
-                    res.status(404).send({type:'error',message:'password is incorrect'});
-                }
-            })
-          }
+              else{
+                const user=users[0]
+                bcrypt.compare(password,user.password, (err,result)=>{
+                    if(err){
+                        res.status(500).send({type:'error',message:'someting went wrong!'})
+                    }
+                    if(result==true){
+                        const token=jwt.sign({userId:user.id,userEmail:user.email},JWT_SECRET_KEY);
+                        console.log(token)
+                        res.status(200).send({message:'logged in successfully',  sessionToken: token})
+                    }
+                    else{
+                        res.status(404).send({type:'error',message:'password is incorrect'});
+                    }
+                })
+              }
+                
             
-        }).  
-        catch((err)=>{
-            
-           
-                console.log(err);
-                res.status(500).json(err);
-          
-        })
+    } catch (error) {
+        console.log(error);
+        res.status(500).json(error);
+    }
+
+    
         
     }
 
-}
 
-exports.isUserPremium=(req,res,next)=>{
-    Order.findOne({where:{status:"SUCCESSFUL",userId:req.user.id}})
-    .then((order)=>{
-        if(order){
-            console.log(order);
-            res.status(200).send({
-                isPremium:true  ,
-                 userName:req.user.name,
-                 userEmail:req.user.email,
-                
-                
-                });
-         
-        }
-        else{
-            return res.status(200).send({
-                isPremium: false,
-          userName: req.user.name,
-          userEmail: req.user.email, 
-            })
-        }
-    }).catch((err) => {
-        console.log(err);
-        res.status(500).send(err);
-      });
+
+exports.isUserPremium=async(req,res,next)=>{
+
+    try {
+       const order=await Order.findOne({where:{status:"SUCCESSFUL",userId:req.user.id}})
+        
+            if(order){
+                console.log(order);
+                res.status(200).send({
+                    isPremium:true  ,
+                     userName:req.user.name,
+                     userEmail:req.user.email,
+                    
+                    
+                    });
+             
+            }
+            else{
+                return res.status(200).send({
+                    isPremium: false,
+              userName: req.user.name,
+              userEmail: req.user.email, 
+                })
+            }
+        
+    } 
+    catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+   
+}
 }
 
