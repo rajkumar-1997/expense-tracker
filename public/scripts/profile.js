@@ -1,5 +1,5 @@
 
-const navBtns=document.querySelectorAll('.nav-btn');
+
 const proEle=document.getElementById('pro');
 const userNameEle=document.getElementById('user-name');
 const userEmailEle=document.getElementById('user-email');
@@ -16,7 +16,10 @@ const leaderboardHeading=document.getElementById('leaderboard-heading');
 const historyHeading=document.getElementById('history-heading');
 const flexContainer = document.getElementById("flex-container");
 const paginationContainer = document.getElementById("pagination-container");
-const leaderboardContainer = document.getElementById( "leaderboard-expense-container");
+const  leaderboardExpenseContainer = document.getElementById("leaderboard-expense-container");
+const  leaderboardContainer = document.getElementById("leaderboard-container");
+ const  leaderboardExpenseBar=document.getElementById('leaderboard-expense-bar')
+// Replace 'nav' with the actual ID of your navigation element
 
 const userBtn=document.getElementById('user-btn');
 const user=document.getElementById('user');
@@ -74,11 +77,31 @@ function enablePremium() {
   premiumFeature.style.display = "flex";
   normalFeature.style.display = "none";
   
-  leaderbordBtn2.addEventListener("click", leaderbordHandler);
 
+ 
+  // leaderbordBtn2.addEventListener("click", leaderbordHandler);
  
 }
 
+let leaderboard=true;
+const openLeaderBoard=function(){
+  if( leaderboard){
+    leaderbordHandler();
+    leaderboard=false;
+   
+    leaderbordBtn.classList.add('pactive');
+  }
+  else{
+    plusBtn.style.display='flex';
+    paginationContainer.style.display='flex';
+    dailyContainer.style.display='block';
+   
+    leaderboardContainer.style.display='none';
+    nav.style.display='flex';
+    leaderboard=true;
+    leaderbordBtn.classList.remove('pactive');
+  }
+}
 function disablePremium() {
   nav.style.visibility='hidden'; // Commented out as nav variable is not defined in the provided code
   normalFeature.style.display = "block";
@@ -89,43 +112,6 @@ function disablePremium() {
 }
 
 
-let leaderbordBtnClicked=true;
- function openLeaderboard(){
-  if(leaderbordBtnClicked){
-    nav.style.display='none';
-    dailyContainer.style.display='none';
-    // monthlyContainer.style.display='none';
-    // yearlyContainer.style.display='none';
-     plusBtn.style.display='none';
-      
-     paginationContainer.style.display='none';
-    document.getElementById("leaderboard-container").style.display="block";
-    leaderbordHandler();
-    leaderbordBtnClicked=false;
-  }
-  else{
-    nav.style.display='flex';
-    dailyContainer.style.display='flex';
-    // monthlyContainer.style.display='block';
-    // yearlyContainer.style.display='block';
-     plusBtn.style.display='flex';
-      
-     paginationContainer.style.display='flex';
-    document.getElementById("leaderboard-container").style.display="none";
-    // leaderbordHandler();
-    leaderbordBtnClicked=true;
-  }
-}
-
-//  nav.style.display='none';
-//   dailyContainer.style.display='none';
-//   monthlyContainer.style.display='none';
-//   yearlyContainer.style.display='none';
-//    plusBtn.style.display='none';
-    
-//    paginationContainer.style.display='none';
-//   document.getElementById("leaderboard-container").style.display="block";
-//   leaderbordHandler();
  
 function leaderbordHandler(){
   const token=localStorage.getItem('sessionToken');
@@ -140,19 +126,25 @@ function leaderbordHandler(){
     if(response.status==200){
       console.log(response.data);
      
-      const leaderBoardExpenseBar=document.getElementById('leaderboard-expense-bar');
-
-     leaderBoardExpenseBar.innerText="";
+     
+      plusBtn.style.display='none';
+      paginationContainer.style.display='none';
+      dailyContainer.style.display='none';
+      monthlyContainer.style.display='none';
+      yearlyContainer.style.display='none';
+      leaderboardContainer.style.display='block';
+      nav.style.display='none';
+      leaderboardExpenseBar.innerHTML = "";
       userContainer.classList.remove('show-user');
       
       // flexContainer.style.transform="translateX(-1650px)";
     //  display(true,false);
      response.data.userWiseExpense.forEach((userExpense)=>{
       if(userExpense.id==response.data.userId){
-        showLeaderboard(userExpense, "background-color:#FF731D");
+        showLeaderboard(userExpense);
       }
       else {
-        showLeaderboard(userExpense, "");
+        showLeaderboard(userExpense);
       }
      })
 
@@ -166,24 +158,22 @@ function leaderbordHandler(){
   });
 }
 
-function showLeaderboard(leaderboardData, highlight) {
-  const leaderBoardExpenseBar = document.getElementById('leaderboard-expense-bar');
+function showLeaderboard(leaderboardData) {
+  
 
-  if (!leaderBoardExpenseBar) {
-    console.error("Element with ID 'leadernoard-expense-bar' not found.");
-    return;
-  }
+  
 
   const textNode = `
-    <div class="bar">
-      <div class="name">${leaderboardData.name}</div>
-      <div class="total">${
-        leaderboardData.userTotalExpense == null ? 0 : leaderboardData.userTotalExpense
-      } &#x20B9;</div>
-    </div>
-  `;
-
-  leaderBoardExpenseBar.insertAdjacentHTML('beforeend', textNode);
+  <div class="bar">
+    <div class="name">${leaderboardData.name}</div>
+    <div class="total">${
+      leaderboardData.userTotalExpense == null
+        ? 0
+        : leaderboardData.userTotalExpense
+    } &#x20B9;</div>
+  </div>
+`;
+leaderboardExpenseBar.insertAdjacentHTML('beforeend',textNode);
 }
 
 
@@ -191,23 +181,23 @@ function showLeaderboard(leaderboardData, highlight) {
  
 
 
-function display(leaderboard,history){
-  if(leaderboard){
-    showHistoryBtn2.style.visibility = "visible";
-    leaderboardHeading.style.display = "inline-block";
-  }
-  else {
-    showHistoryBtn2.style.visibility = "hidden";
-    leaderboardHeading.style.display = "none";
-  }
-  if (history) {
-    leaderbordBtn2.style.visibility = "visible";
-    historyHeading.style.display = "inline-block";
-  } else {
-    leaderbordBtn2.style.visibility = "hidden";
-    historyHeading.style.display = "none";
-  }
-}
+// function display(leaderboard,history){
+//   if(leaderboard){
+//     showHistoryBtn2.style.visibility = "visible";
+//     leaderboardHeading.style.display = "inline-block";
+//   }
+//   else {
+//     showHistoryBtn2.style.visibility = "hidden";
+//     leaderboardHeading.style.display = "none";
+//   }
+//   if (history) {
+//     leaderbordBtn2.style.visibility = "visible";
+//     historyHeading.style.display = "inline-block";
+//   } else {
+//     leaderbordBtn2.style.visibility = "hidden";
+//     historyHeading.style.display = "none";
+//   }
+// }
 let isclicked=true;
 const showhideprofile=function(){
     if(isclicked){

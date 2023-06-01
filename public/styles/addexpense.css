@@ -181,7 +181,7 @@ body{
     border: 1px solid rgba(45, 45, 45, 0.15);
   }
   
-  #premium-feature button:hover {
+  #premium-feature button.pactive,#premium-feature button:hover{
     background-color:rgb(5, 100, 92);
     color: #fff;
   }
@@ -232,6 +232,15 @@ body{
     margin-top: 0.3rem;
     border-radius: 0.3rem;
   }
+
+/* .leaderboard-btn.lactive{
+    background-color: rgb(5, 100, 92);
+    color: rgb(253, 242, 242);
+} */
+
+
+
+  /* ----------------------------main------------------------------------ */
   
 
 .main-container{
