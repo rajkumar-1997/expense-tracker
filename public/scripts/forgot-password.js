@@ -14,11 +14,7 @@ resetPasswordBtn.addEventListener('click',async(e)=>{
             email : email
         })
         if(response.status==200){
-        //     document.querySelector('.alertu').innerHTML = `
-        //     <div class="alert alert-warning">
-        //     Check Your Email
-        // </div>
-        //     `
+      
         emailInput.value="";
         window.alert('email sent plz check')
         }
