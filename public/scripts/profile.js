@@ -100,6 +100,9 @@ const openLeaderBoard=function(){
     nav.style.display='flex';
     leaderboard=true;
     leaderbordBtn.classList.remove('pactive');
+    navMonthlyBtn.classList.remove('active');
+    navYearlyBtn.classList.remove('active');
+    navDailyBtn.classList.add('active');
   }
 }
 function disablePremium() {
