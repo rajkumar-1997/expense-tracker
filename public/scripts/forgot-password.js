@@ -2,8 +2,7 @@ const emailInput=document.getElementById('email');
 
 const resetPasswordBtn=document.getElementById('resetpassbtn')
 
-// const url  = "https://expense-tracker-5h0p.onrender.com";
-// const Email = document.querySelector('#email')
+
 document.addEventListener("DOMContentLoaded",()=> {
 resetPasswordBtn.addEventListener('click',async(e)=>{
 
@@ -24,6 +23,18 @@ resetPasswordBtn.addEventListener('click',async(e)=>{
     }
 })
 })
+
+
+
+
+
+
+
+
+
+
+
+
 
 
    

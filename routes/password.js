@@ -6,6 +6,6 @@ const router=express.Router();
 
 router.post('/forgotpassword',passwordControllers.postForgotPassword);
 router.get('/resetpassword/:uuid',passwordControllers.getResetPassword);
-
+router.post('/new-password',passwordControllers.createNewPassword);
 
 module.exports=router;
