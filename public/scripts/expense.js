@@ -114,6 +114,7 @@ navDailyBtn.addEventListener('click',(e)=>{
   navYearlyBtn.classList.remove('active');
   monthlyContainer.style.display='none';
   yearlyContainer.style.display='none';
+  plusBtn.style.display='flex';
 })
 navMonthlyBtn.addEventListener('click',(e)=>{
   e.preventDefault();
@@ -124,6 +125,7 @@ navMonthlyBtn.addEventListener('click',(e)=>{
     navMonthlyBtn.classList.add('active');
     navYearlyBtn.classList.remove('active');
     yearlyContainer.style.display='none';
+    plusBtn.style.display='none';
 
 
 })
@@ -136,6 +138,7 @@ navYearlyBtn.addEventListener('click',(e)=>{
     navDailyBtn.classList.remove('active');
     navMonthlyBtn.classList.remove('active');
     navYearlyBtn.classList.add('active');
+    plusBtn.style.display='none';
  
 
 })

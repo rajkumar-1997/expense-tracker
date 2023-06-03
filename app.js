@@ -17,6 +17,7 @@ const userRoutes=require('./routes/user');
 const expenseRoutes=require('./routes/expense')
 const orderRoutes=require('./routes/order');
 const passwordRoutes=require('./routes/password');
+const expenseFileRoutes=require('./routes/expensefile');
 
 
 
@@ -26,11 +27,14 @@ const User = require("./models/user");
 const Expense = require("./models/expense");
 const Order=require('./models/order');
 const ForgotPasswordRequest=require('./models/forgotPassword');
+const ExpenseFile=require('./models/expensefile');
+
 
 app.use('/user',userRoutes);
 app.use('/expense',expenseRoutes);
 app.use('/order',orderRoutes);
 app.use('/password',passwordRoutes);
+app.use('/expense-file',expenseFileRoutes);
 
 app.use((req,res) => {
     let url = req.url
@@ -49,6 +53,8 @@ User.hasMany(Order);
 Order.belongsTo(User);
 User.hasMany(ForgotPasswordRequest);
 ForgotPasswordRequest.belongsTo(User);
+User.hasMany(ExpenseFile);
+ExpenseFile.belongsTo(User);
 
 
 sequelize.sync().then(result=>{

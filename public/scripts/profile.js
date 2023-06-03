@@ -215,6 +215,37 @@ const showhideprofile=function(){
 }
 
 
+async function downloadReport(e){
+  downloadBtn.classList.add('pactive');
+  downloadBtn.firstElementChild.className = "fa fa-spinner fa-pulse";
+  try {
+    const token=localStorage.getItem('sessionToken');
+
+  const response=await axios.get('http://localhost:3000/expense-file/download',{
+    headers:{
+      Authorization:token,
+    }
+  })
+  if(response.status==200){
+    let a=document.createElement('a');
+    console.log(response.data.fileUrl)
+    a.href=response.data.fileUrl;
+    a.download='temp.csv';
+    await a.click();
+  }
+  else{
+    alert("Some thing went wrong try after some time");
+  }
+ 
+  } catch (error) {
+     console.log(error);
+  } 
+ 
+    downloadBtn.firstElementChild.className = "fa fa-download";
+    downloadBtn.classList.remove('pactive');
+  
+}
+downloadBtn.addEventListener('click', downloadReport);
 async function createOrder(e) {
   e.preventDefault();
   const token = localStorage.getItem("sessionToken");
