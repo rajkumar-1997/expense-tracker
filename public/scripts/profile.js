@@ -6,12 +6,12 @@ const userEmailEle=document.getElementById('user-email');
 const premiumFeature=document.getElementById('premium-feature');
 const normalFeature=document.getElementById('normal-feature');
 const rzpBtn=document.getElementById('rzp-button');
-const leaderbordBtn2 = document.getElementById("leaderboard-btn2");
+// const leaderbordBtn2 = document.getElementById("leaderboard-btn2");
 const leaderbordBtn=document.getElementById('leaderboard-btn');
 const userContainer=document.getElementById('user-container');
 const downloadBtn=document.getElementById('download-btn');
 const showHistoryBtn=document.getElementById("download-history-btn");
-const showHistoryBtn2 = document.getElementById("download-history-btn2");
+// const showHistoryBtn2 = document.getElementById("download-history-btn2");
 const leaderboardHeading=document.getElementById('leaderboard-heading');
 const historyHeading=document.getElementById('history-heading');
 const flexContainer = document.getElementById("flex-container");
@@ -20,6 +20,8 @@ const  leaderboardExpenseContainer = document.getElementById("leaderboard-expens
 const  leaderboardContainer = document.getElementById("leaderboard-container");
  const  leaderboardExpenseBar=document.getElementById('leaderboard-expense-bar')
 // Replace 'nav' with the actual ID of your navigation element
+const historyContainer=document.getElementById('history-container');
+const historyExpenseBar=document.getElementById('history-expense-bar');
 
 const userBtn=document.getElementById('user-btn');
 const user=document.getElementById('user');
@@ -246,6 +248,100 @@ async function downloadReport(e){
   
 }
 downloadBtn.addEventListener('click', downloadReport);
+
+
+
+
+
+let historyopen=true;
+const openDownloadHistory=function(){
+  if(historyopen){
+    showHistoryHandler();
+    showHistoryBtn.classList.add('pactive');
+    historyopen=false;
+  }
+  else{
+    plusBtn.style.display='flex';
+    paginationContainer.style.display='flex';
+    dailyContainer.style.display='block';
+   
+    historyContainer.style.display='none';
+    nav.style.display='flex';
+    historyopen=true;
+    showHistoryBtn.classList.remove('pactive');
+    navMonthlyBtn.classList.remove('active');
+    navYearlyBtn.classList.remove('active');
+    navDailyBtn.classList.add('active');
+  }
+
+}
+async function showHistoryHandler(){
+  try {
+    const token=localStorage.getItem('sessionToken');
+    const response=await axios.get('http://localhost:3000/expense-file/download-history',{
+      headers:{
+        Authorization:token,
+      }
+    });
+    if(response.status==200){
+      console.log(response.data);
+     
+     
+      plusBtn.style.display='none';
+      paginationContainer.style.display='none';
+      dailyContainer.style.display='none';
+      monthlyContainer.style.display='none';
+      yearlyContainer.style.display='none';
+      historyContainer.style.display='block';
+      nav.style.display='none';
+      historyExpenseBar.innerHTML = "";
+      userContainer.classList.remove('show-user');
+
+      response.data.expenseFiles.forEach((each)=>{
+        showHistory(each);
+      })
+    }
+    else{
+      throw {response:response};
+    }
+
+    
+  } catch (error) {
+    console.log(error);
+    // notify(error.response.data);
+  }
+}
+
+// formating date local
+function formatDate(date) {
+  const daysPassed = Math.round((new Date() - date) / (1000 * 60 * 60 * 24));
+
+  if (daysPassed === 0) return "Today";
+  else if (daysPassed === 1) return "Yesterday";
+  else if (daysPassed <= 3) return `${daysPassed} days ago`;
+  else {
+    const options = {
+      day: "2-digit",
+      month: "long",
+      year: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    };
+    return new Intl.DateTimeFormat("en-IN", options).format(date);
+  }
+}
+function showHistory(historyData){
+  const downloadedOn = formatDate(new Date(historyData.createdAt));
+  // console.log(historyData);
+  const textNode=`<div class="bar">
+  <div class="downloaded-time">${downloadedOn }</div>
+  <div class="link"><a href="${historyData.fileUrl}" download><button><i class="fa fa-download fa-lg" aria-hidden="true"></i
+    ></button></a></div>
+  </div> `
+
+  historyExpenseBar.insertAdjacentHTML('beforeend',textNode);
+}
+
 async function createOrder(e) {
   e.preventDefault();
   const token = localStorage.getItem("sessionToken");

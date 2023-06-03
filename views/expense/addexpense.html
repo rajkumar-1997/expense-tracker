@@ -40,7 +40,7 @@
               &nbsp;<i class="fa fa-download" aria-hidden="true"></i
               >&nbsp;Download Data
             </button>
-            <button id="download-history-btn">
+            <button id="download-history-btn" onclick="openDownloadHistory()">
               &nbsp;<i class="fa fa-history" aria-hidden="true"></i>&nbsp;All
               Downloads
             </button>
@@ -230,8 +230,7 @@
               ></i
             >
     </span>
-    <span id="history-heading" style="display: none;"
-    >All Downloads</span>
+    
   </div>
 
   <div class="expense-container" id="leaderboard-expense-container">
@@ -255,6 +254,38 @@
 
 
 </section>
+
+    <!--------------------download-history------------------>
+    <section class="conatiner" id="history-container">
+      <div class="info-bar" >
+        <span class="history-heading">
+          Download History&nbsp;<i class="fa fa-history fa-lg" aria-hidden="true"></i>
+        </span>
+       
+      </div>
+    
+      <div class="expense-container" id="history-expense-container">
+      <div class="expense-bar history-bar"  id="history-expense-bar">
+    <!-- <div class="bar">
+    <div class="downloaded-time">16 may2023</div>
+    <div class="link"><a href="${historyData.fileUrl}" download><button><i class="fa fa-download fa-lg" aria-hidden="true"></i
+      ></button></a></div>
+    </div> -->
+      </div>
+      </div>
+      
+      <!-- <div class="leaderboard-history">
+        <button id="leaderboard-btn2">
+          <i class="fa fa-tasks" aria-hidden="true"></i>&nbsp;LeaderBoard
+        </button>
+        <button id="download-history-btn2">
+          <i class="fa fa-history fa-lg" aria-hidden="true"></i
+          >&nbsp;History
+        </button>
+      </div> -->
+    
+    
+    </section>
     </div>
 </div>
 

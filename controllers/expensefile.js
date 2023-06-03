@@ -32,3 +32,16 @@ exports.downloadReport=async(req,res,next)=>{
          res.status(500).send(error)
     }
 }
+
+exports.getDownloadHistory= async(req,res,next)=>{
+
+    try {
+        const expenseFiles=await req.user.getExpensefiles({order:[['createdAt','DESC']]})
+        console.log(expenseFiles);
+        res.status(200).send({expenseFiles:expenseFiles});
+    } catch (error) {
+        console.log(error);
+        res.status(500).send(error);
+    }
+  
+}

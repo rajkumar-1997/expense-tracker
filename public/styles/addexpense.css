@@ -213,7 +213,22 @@ body{
     background-color: #fff;
     color:   rgb(5, 100, 92);
   } */
+/*    
+-----------------------------download-history----------------------- */
+#history-container{
+    display: none;
+  }
+  #history-container .info-bar{
+    display: flex;
+    flex-direction: row;
    
+    justify-content: center;
+    background-color: rgb(5, 100, 92);
+    color: rgb(253, 242, 242);
+    padding: 0.5rem 0.1rem;
+    margin-top: 0.3rem;
+    border-radius: 0.3rem;
+  }
 
 
   /* -----------------------leader-board-------------------------- */
