@@ -354,7 +354,8 @@ function updateDailySum(sum) {
 
 
 rowsPerPageInput.addEventListener('change',(e)=>{
-  localStorage.setItem('rowPerPage',e.target.value);
+
+  localStorage.setItem('rowsPerPage',e.target.value);
   loadDailyExpenseData(dateEle[0].id,pageBtns.id);
 })
 pageRightBtn.addEventListener('click',()=>{
@@ -371,8 +372,11 @@ pageLeftBtn.addEventListener('click',()=>{
 
 function  loadDailyExpenseData(dateNumber, page){
       let rows=localStorage.getItem('rowsPerPage');
-      if(rows==null) rows=5;
+      if(rows==null){
+        rows=5;
+      } 
       rowsPerPageInput.value=rows;
+     
      const token=localStorage.getItem('sessionToken');
      axios.get(`http://localhost:3000/expense/get-by-date?dateNumber=${dateNumber}&page=${page}&rows=${rows}`,
      {
