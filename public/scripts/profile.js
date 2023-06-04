@@ -28,6 +28,7 @@ const user=document.getElementById('user');
 
 
 
+
 ////////////////////////premium check///////////////////
 
 async function premiumOrNot() {
@@ -89,9 +90,14 @@ let leaderboard=true;
 const openLeaderBoard=function(){
   if( leaderboard){
     leaderbordHandler();
-    leaderboard=false;
-   
     leaderbordBtn.classList.add('pactive');
+    leaderboard=false;
+    historyContainer.style.display='none';
+    showHistoryBtn.classList.remove('pactive');
+   
+  }
+  else if( showHistoryBtn.classList.contains('pactive')){
+    openDownloadHistory();
   }
   else{
     plusBtn.style.display='flex';
@@ -138,7 +144,7 @@ function leaderbordHandler(){
       monthlyContainer.style.display='none';
       yearlyContainer.style.display='none';
       leaderboardContainer.style.display='block';
-      nav.style.display='none';
+      nav.style.visibility='hidden';
       leaderboardExpenseBar.innerHTML = "";
       userContainer.classList.remove('show-user');
       
@@ -259,6 +265,13 @@ const openDownloadHistory=function(){
     showHistoryHandler();
     showHistoryBtn.classList.add('pactive');
     historyopen=false;
+    leaderboardContainer.style.display='none';
+    leaderbordBtn.classList.remove('pactive');
+    
+
+  }
+  else if( leaderbordBtn.classList.contains('pactive')){
+    openLeaderBoard();
   }
   else{
     plusBtn.style.display='flex';
@@ -293,7 +306,7 @@ async function showHistoryHandler(){
       monthlyContainer.style.display='none';
       yearlyContainer.style.display='none';
       historyContainer.style.display='block';
-      nav.style.display='none';
+      nav.style.visibility='hidden';
       historyExpenseBar.innerHTML = "";
       userContainer.classList.remove('show-user');
 
@@ -341,6 +354,8 @@ function showHistory(historyData){
 
   historyExpenseBar.insertAdjacentHTML('beforeend',textNode);
 }
+
+
 
 async function createOrder(e) {
   e.preventDefault();

@@ -64,6 +64,8 @@ exports.getExpensesByDate = async (req, res, next) => {
   }
 
   const now = new Date();
+  const page=+req.query.page;
+  const rows=+req.query.rows;
   const date =  await new Date(
     now.getFullYear(),
     now.getMonth(),
@@ -101,12 +103,15 @@ exports.getExpensesByDate = async (req, res, next) => {
         month: date.getMonth(),
         year: date.getFullYear(),
       },
+      offset:(page-1)*rows,
+      limit:rows,
     });
 
     res.status(200).send({
+      actualRows:expenses.length ,
       expenses: expenses,
       date: dateToSend,
-      totalAndCount: sumAndCount,
+      totalAndCount: sumAndCount ,
     });
   }
   else{

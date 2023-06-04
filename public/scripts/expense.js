@@ -115,6 +115,8 @@ navDailyBtn.addEventListener('click',(e)=>{
   monthlyContainer.style.display='none';
   yearlyContainer.style.display='none';
   plusBtn.style.display='flex';
+  pageBtns.id=1;
+  paginationContainer.style.display='block'
 })
 navMonthlyBtn.addEventListener('click',(e)=>{
   e.preventDefault();
@@ -126,7 +128,7 @@ navMonthlyBtn.addEventListener('click',(e)=>{
     navYearlyBtn.classList.remove('active');
     yearlyContainer.style.display='none';
     plusBtn.style.display='none';
-
+    paginationContainer.style.display='none'
 
 })
 navYearlyBtn.addEventListener('click',(e)=>{
@@ -139,6 +141,7 @@ navYearlyBtn.addEventListener('click',(e)=>{
     navMonthlyBtn.classList.remove('active');
     navYearlyBtn.classList.add('active');
     plusBtn.style.display='none';
+    paginationContainer.style.display='none'
  
 
 })
@@ -193,10 +196,10 @@ yearlyInfoBar.addEventListener("click", (e) => {
 window.addEventListener("DOMContentLoaded", loadExpenseData);
 
 function loadExpenseData() {
-  loadDailyExpenseData(0, 1);
-  loadMonthlyExpenseData(0,1);
-  loadYearlyExpenseData(0,1);
-  // pageBtns.id = 1; 
+  loadDailyExpenseData(0,1);
+  loadMonthlyExpenseData(0);
+  loadYearlyExpenseData(0);
+  pageBtns.id = 1; 
 }
 
 function loadYearlyExpenseData(yearNumber) {
@@ -348,12 +351,30 @@ function loadMonthlyExpenseData(monthNumber) {
 function updateDailySum(sum) {
   dailySum.innerText = sum || 0;
 }
+
+
+rowsPerPageInput.addEventListener('change',(e)=>{
+  localStorage.setItem('rowPerPage',e.target.value);
+  loadDailyExpenseData(dateEle[0].id,pageBtns.id);
+})
+pageRightBtn.addEventListener('click',()=>{
+  pageBtns.id=+pageBtns.id+1;
+  loadDailyExpenseData(dateEle[0].id,pageBtns.id);
+
+})
+
+pageLeftBtn.addEventListener('click',()=>{
+  pageBtns.id-=1;
+  loadDailyExpenseData(dateEle[0].id,pageBtns.id);
+})
  
 
 function  loadDailyExpenseData(dateNumber, page){
- 
+      let rows=localStorage.getItem('rowsPerPage');
+      if(rows==null) rows=5;
+      rowsPerPageInput.value=rows;
      const token=localStorage.getItem('sessionToken');
-     axios.get(`http://localhost:3000/expense/get-by-date?dateNumber=${dateNumber}`,
+     axios.get(`http://localhost:3000/expense/get-by-date?dateNumber=${dateNumber}&page=${page}&rows=${rows}`,
      {
       headers: {
         Authorization: token,
@@ -361,7 +382,7 @@ function  loadDailyExpenseData(dateNumber, page){
     }
     ).then((response)=>{
       if(response.status==200){
-        const { expenses, date, totalAndCount } = response.data;
+        const { actualRows, expenses, date, totalAndCount } = response.data;
         // console.log(date);
         dailyExpenseContainer.innerText = "";
         dateEle[0].innerText = date;
@@ -373,7 +394,7 @@ function  loadDailyExpenseData(dateNumber, page){
           loadMonthlyExpenseData(monthEle[0].id) ;
         });
 
-
+         showPaginationInfo(page,rows,actualRows,totalAndCount.count)
       }
       else {
         throw { response: response };
@@ -412,7 +433,13 @@ dailyExpenseContainer.innerHTML += textNode;
 }
 
 
-
+function showPaginationInfo(page,rows,actualRows,totalCount){
+  const offset=(page-1)*rows;
+  const lastRow=(offset+actualRows) || 0;
+  pageInfo.innerText=`${offset+1}-${lastRow} of ${(totalCount) || 0}`
+  pageRightBtn.disabled=(lastRow>=totalCount);
+  pageLeftBtn.disabled=(pageBtns.id==1);
+}
 
 
 dailyExpenseContainer.addEventListener('click',(e)=>{
@@ -465,7 +492,7 @@ form.addEventListener('submit', (e) => {
       if (response.status === 201) {
         // notify(response.data.notification);
         // showDailyExpense(response.data.expense);
-        dailySum.innerHTML = "<i class='fa fa-refresh' aria-hidden='true'></i>";
+        
         e.target.category.value = "";
         e.target.amount.value = "";
         e.target.description.value = "";
