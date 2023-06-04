@@ -144,7 +144,7 @@ function leaderbordHandler(){
       monthlyContainer.style.display='none';
       yearlyContainer.style.display='none';
       leaderboardContainer.style.display='block';
-      nav.style.visibility='hidden';
+      nav.style.display='none';
       leaderboardExpenseBar.innerHTML = "";
       userContainer.classList.remove('show-user');
       
@@ -306,7 +306,7 @@ async function showHistoryHandler(){
       monthlyContainer.style.display='none';
       yearlyContainer.style.display='none';
       historyContainer.style.display='block';
-      nav.style.visibility='hidden';
+      nav.style.display='none';
       historyExpenseBar.innerHTML = "";
       userContainer.classList.remove('show-user');
 
