@@ -6,6 +6,7 @@
 body{
     display: flex;
     /* flex-direction: column; */
+    margin: 0;
    
  
 background-color:#3BB9FF;
@@ -184,5 +185,97 @@ hr{
     
 }
 
+/* -------------------toast notification------------------- */
+.toast{
+    position: fixed;
+    top:1rem;
+    right:2rem;
+    border-radius: 0.8rem;
+    background: #fff;
+    padding: 1.2rem 2.2rem 1.2rem 1.7rem;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+     overflow: hidden;
+     transform: translateX(calc(100% + 2rem));
+     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+     z-index: 5;
+}
+
+.toast.tactive{
+    transform: translateX(0%);
+}
+.toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
+
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.3rem;
+  }
+
+  .message .text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666666;
+  }
+
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  @media screen and (max-width:1220px) {
+  
+}
+
+@media screen and (max-width:890px) {
+  
+}
+
+
+@media screen and (max-width:700px) {
+
+    body{
+        flex-direction: column;
+    }
+
+   .left{
+    height: 50vh;
+    margin-top: 2rem;
+   }
+   .right{
+    height: 50vh;
+    margin-top: 5rem;
+   
+   }
+ 
+   .form-box{
+    height: 100%;
+    /* padding: 0 10rem ; */
+    
+   }
+   form{
+    /* padding: 2rem 7rem; */
+    height: 100%;
+   }
+}
+
+
+
+@media screen and (max-width:480px) {
+   
+
+    .left{
+        height: 60vh;
+        margin-top: 2rem;
+       }
+       .right{
+        height: 40vh;
+        margin-top: 5rem;
+       
+       }
+    
+}
 
 

@@ -24,6 +24,7 @@ body{
     justify-content: center;
     align-items: center;
    
+   
     
 }
 
@@ -184,6 +185,9 @@ body{
   #premium-feature button.pactive,#premium-feature button:hover{
     background-color:rgb(5, 100, 92);
     color: #fff;
+  }
+  #logout{
+    margin: 0.3rem 5.9rem;
   }
   
   .user a{
@@ -461,7 +465,7 @@ body{
     cursor: pointer;
 }
 
-.bar-des-btn>svg{
+.bar-des-btn>i{
     width:2rem;
     padding: 0.2rem 0.3rem;
     background-color: gainsboro;
@@ -535,7 +539,7 @@ footer h1{
 }
 #add-expense-container{
     position: fixed;
-    bottom: 7rem;
+    bottom: 9rem;
     right: 1rem;
     padding: 0 3rem;
     display: flex;
@@ -606,7 +610,7 @@ footer h1{
     flex-direction: row;
     position: fixed;
     justify-content: flex-end;
-    bottom: 6rem ;
+    bottom: 8rem ;
     right: 1.3rem;
     
     width: 10%;
@@ -652,8 +656,47 @@ footer h1{
     
 } 
 
+/* -------------------toast notification------------------- */
+.toast{
+    position: fixed;
+    top:1rem;
+    right:2rem;
+    border-radius: 0.8rem;
+    background: #fff;
+    padding: 1.2rem 2.2rem 1.2rem 1.7rem;
+    box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.1);
+     overflow: hidden;
+     transform: translateX(calc(100% + 2rem));
+     transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.35);
+     z-index: 5;
+}
 
+.toast.tactive{
+    transform: translateX(0%);
+}
+.toast .toast-content {
+    display: flex;
+    align-items: center;
+  }
 
+  .toast-content .message {
+    display: flex;
+    flex-direction: column;
+    margin: 0 1.3rem;
+  }
+
+  .message .text {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666666;
+  }
+
+  .message .text.text-1 {
+    font-weight: 600;
+    color: #333;
+  }
+
+  
 
 
 
@@ -748,5 +791,8 @@ footer h1{
        
        
      }
+    .user-container{
+      left: 1rem;
+    }
     
 }

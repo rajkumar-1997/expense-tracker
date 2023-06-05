@@ -43,6 +43,7 @@ const pageBtns = document.querySelector(".page-btns");
 const pageLeftBtn = document.getElementById("page-btn-left");
 const pageRightBtn = document.getElementById("page-btn-right");
 const rowsPerPageInput = document.getElementById("rows-per-page");
+const plusCrossBtnDiv=document.getElementById('plus-cross-btn-div');
 
 const date = new Date();
  
@@ -114,7 +115,8 @@ navDailyBtn.addEventListener('click',(e)=>{
   navYearlyBtn.classList.remove('active');
   monthlyContainer.style.display='none';
   yearlyContainer.style.display='none';
-  plusBtn.style.display='flex';
+  // plusCrossBtnDiv.style.display='flex';
+  // crossBtn.style.display='none';
   pageBtns.id=1;
   paginationContainer.style.display='block'
 })
@@ -127,7 +129,7 @@ navMonthlyBtn.addEventListener('click',(e)=>{
     navMonthlyBtn.classList.add('active');
     navYearlyBtn.classList.remove('active');
     yearlyContainer.style.display='none';
-    plusBtn.style.display='none';
+    // plusCrossBtnDiv.style.display='none';
     paginationContainer.style.display='none'
 
 })
@@ -140,7 +142,7 @@ navYearlyBtn.addEventListener('click',(e)=>{
     navDailyBtn.classList.remove('active');
     navMonthlyBtn.classList.remove('active');
     navYearlyBtn.classList.add('active');
-    plusBtn.style.display='none';
+    // plusCrossBtnDiv.style.display='none';
     paginationContainer.style.display='none'
  
 
@@ -233,7 +235,7 @@ function loadYearlyExpenseData(yearNumber) {
     }
   }).catch((err) => {
     console.log(err);
-    // notify(err.response.data);
+    notify(err.response.data);
   });
 }
 
@@ -311,6 +313,7 @@ function loadMonthlyExpenseData(monthNumber) {
     }
   }).catch((err) => {
     console.log(err);
+    notify(err.response.data);
   });
 }
 
@@ -405,6 +408,7 @@ function  loadDailyExpenseData(dateNumber, page){
       }
     }).catch((error)=>{
         console.log(error)
+        notify(error.response.data);
     })
 }
 
@@ -415,14 +419,7 @@ function showDailyExpense(expenseData){
   
   const textNode=` <div class="expense-bar">
   <div class="bar">
-      <button class="bar-des-btn" id="bar-des-btn">${expenseData.category}<svg id="${expenseData.id}-eye-open"  style="display:block;  font-size:1.5rem;" onClick=eyeOpenFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des") xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-      </svg> <svg id="${expenseData.id}-eye-close" style="display:none; font-size:1.5rem;"  onClick=eyeCloseFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des") xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
-        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
-        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
-        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
-      </svg></button>
+      <button class="bar-des-btn" id="bar-des-btn">${expenseData.category}<i class="fa-regular fa-eye"  id="${expenseData.id}-eye-open"  style="display:block;  font-size:1rem;" onClick=eyeOpenFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des")></i><i class="fa-solid fa-eye-slash" id="${expenseData.id}-eye-close" style="display:none; font-size:1rem;"  onClick=eyeCloseFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des")></i></button>
       <div class="amount"><span>${expenseData.amount} <i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></span></div>
      
       
@@ -458,8 +455,9 @@ dailyExpenseContainer.addEventListener('click',(e)=>{
       }
     }).then((response)=>{
       if(response.status==200){
-        // notify(response.data);
+        notify(response.data);
         e.target.parentElement.parentElement.remove();
+        loadDailyExpenseData(dateEle[0].id, 1);
         loadMonthlyExpenseData(monthEle[0].id) ;
         loadYearlyExpenseData(yearEle[0].id) ;
         if (dailyExpenseContainer.children.length === 0) {
@@ -469,7 +467,7 @@ dailyExpenseContainer.addEventListener('click',(e)=>{
       }
     }).catch((err) => {
       console.log(err);
-      // notify(err.response.data);
+      notify(err.response.data);
     });
   }
 })
@@ -494,7 +492,7 @@ form.addEventListener('submit', (e) => {
     )
     .then((response) => {
       if (response.status === 201) {
-        // notify(response.data.notification);
+        notify(response.data.notification);
         // showDailyExpense(response.data.expense);
         
         e.target.category.value = "";
@@ -513,7 +511,7 @@ form.addEventListener('submit', (e) => {
     })
     .catch((error) => {
       console.log(error);
-      // notify(err.response.data);
+      notify(error.response.data);
     });
 });
 

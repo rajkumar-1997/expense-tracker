@@ -56,7 +56,7 @@ async function premiumOrNot() {
     }
   } catch (err) {
     console.log(err);
-    // notify(err.response.data);
+    notify(err.response.data);
   }
 }
 
@@ -165,7 +165,7 @@ function leaderbordHandler(){
     }
   }) .catch((err) => {
     console.log(err);
-    // notify(err.response.data);
+    notify(err.response.data);
   });
 }
 
@@ -246,6 +246,7 @@ async function downloadReport(e){
   }
  
   } catch (error) {
+    notify(error.response.data);
      console.log(error);
   } 
  
@@ -321,7 +322,7 @@ async function showHistoryHandler(){
     
   } catch (error) {
     console.log(error);
-    // notify(error.response.data);
+    notify(error.response.data);
   }
 }
 
@@ -388,11 +389,14 @@ async function createOrder(e) {
               },
             }
           );
-          window.alert("You are now a premium user.");
+          notify({
+            type: "success",
+            message: "Congratulations Your are a premium user now",
+          });
           premiumOrNot();
         } catch (err) {
           console.log(err);
-          // notify(err.response.data);
+          notify(err.response.data);
         }
       },
     };
@@ -410,13 +414,19 @@ async function createOrder(e) {
                 Authorization: token,
               },
             })
-            alert("Payment Failed");
+            notify({ type: "error", message: "Transaction Failed! Try Again." });
             premiumOrNot();
         })
   } catch (err) {
     console.log(err);
-    // notify(err.response.data);
+    notify(err.response.data);
   }
+}
+
+
+document.querySelector('#logout').onclick = () => {
+  localStorage.removeItem('sessionToken')
+  window.location.href = "../user/login";
 }
 
 

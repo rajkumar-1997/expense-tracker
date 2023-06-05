@@ -13,13 +13,14 @@ resetPasswordBtn.addEventListener('click',async(e)=>{
             email : email
         })
         if(response.status==200){
-      
+            notify(response.data);
         emailInput.value="";
-        window.alert('email sent plz check')
+        // window.alert('email sent plz check')
         }
     }
     catch(err){
         console.log(err);
+        notify(err.response.data);
     }
 })
 })

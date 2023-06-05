@@ -2,9 +2,9 @@ const express=require('express');
 const bodyParser=require('body-parser')
 const path=require('path');
 const cors=require('cors');
-const helmet=require('helmet');
-const morgan =require('morgan');
-const fs=require('fs');
+// const helmet=require('helmet');
+// const morgan =require('morgan');
+// const fs=require('fs');
 const app=express();
 
 
@@ -12,7 +12,7 @@ require('dotenv').config();
 const PORT=process.env.PORT || 3000;
 const sequelize=require('./util/database');
 
-app.use(helmet());
+// app.use(helmet());
 // const accessLogStream = fs.createWriteStream('access.log', { flags : 'a' })
 // app.use(morgan('combined',{stream:accessLogStream}))
 
@@ -36,7 +36,7 @@ const Expense = require("./models/expense");
 const Order=require('./models/order');
 const ForgotPasswordRequest=require('./models/forgotPassword');
 const ExpenseFile=require('./models/expensefile');
-const { Stream } = require('stream');
+// const { Stream } = require('stream');
 
 
 app.use('/user',userRoutes);
@@ -48,7 +48,7 @@ app.use('/expense-file',expenseFileRoutes);
 app.use((req,res) => {
     let url = req.url
    
-    res.header('Content-Security-Policy', "img-src 'self'");
+    res.header('Content-Security-Policy', "img-src  'self'");
     res.sendFile(path.join(__dirname, `views/${url}.html`))
 })
 

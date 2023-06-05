@@ -32,7 +32,7 @@ exports.postForgotPassword = async (req, res, next) => {
     const user = await User.findOne({ where: { email } });
 
     if (!user) {
-      throw new Error('User not found');
+      throw { type: "error", message: "User Not Found!" };
     }
 
     const createuser = await ForgotPasswordRequest.create({
@@ -67,11 +67,15 @@ exports.postForgotPassword = async (req, res, next) => {
 
     await Promise.all([createuser, sendMail]);
 
-    res.status(200).json({ type: 'success', message: 'An email has been sent' });
+    res.status(200).send({ type: 'success', message: 'An email has been sent on your mail id' });
   } catch (error) {
    
+    if (error.type === "error") {
+      res.status(404).send(error);
+    } else {
       console.log(error);
       res.status(500).send(error);
+    }
    
   }
 };
@@ -101,8 +105,12 @@ exports.getResetPassword=async(req,res,next)=>{
         return res.status(200).send("<h1>Link has been Expired!</h1>");
       }
     } catch (error) {
-       console.log(error);
-       res.status(500).send(error);
+      if (error.type === "error") {
+        res.status(403).send(error);
+      } else {
+        console.log(error);
+        res.status(500).send(error);
+      }
     }
   
 }
@@ -118,7 +126,7 @@ exports.createNewPassword= async(req,res,next)=>{
   try {
    const users=await User.findAll({where:{email:email}})
    if(users.length===0){
-    throw {type:"error",message:`${email} Not Found`}
+    return res.status(404).send({type:"error",message:`${email} Not Found`})
    }
    const user=users[0];
    existingUser=user;
@@ -133,7 +141,11 @@ exports.createNewPassword= async(req,res,next)=>{
    res.status(200).send();
    
   } catch (error) {
-    console.log(error);
-    res.status(500).send(error);
+    if (error.type === "error") {
+      res.status(403).send(error);
+    } else {
+      console.log(error);
+      res.status(500).send(error);
+    }
   }
 }

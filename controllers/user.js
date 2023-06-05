@@ -43,8 +43,12 @@ exports.signUp=async (req,res,next)=>{
          
               
             }catch(error) {
-                console.log(error);
-                res.status(500).json(error);
+                if (error.type === "error") {
+                    res.status(403).send(error);
+                  } else {
+                    console.log(error);
+                    res.status(500).send(error);
+                  }
         }
     }
 
@@ -88,7 +92,12 @@ exports.logIn=async (req,res,next)=>{
             
     } catch (error) {
         console.log(error);
-        res.status(500).json(error);
+        if (error.type === "error") {
+            res.status(404).send(error);
+          } else {
+            console.log(error);
+            res.status(500).send(error);
+          }
     }
 
     

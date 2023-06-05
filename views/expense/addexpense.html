@@ -6,6 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ExpenseBuzz-Add your expense</title>
     <link rel="stylesheet" href="../../styles/addexpense.css">
+    <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+  />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
@@ -23,9 +27,8 @@
      <section class="user-container" id="user-container">
       <div class="user" id="user">
         <div class="user-name">
-          <span class="fa-stack">
-            <i class="fa fa-square-o fa-stack-2x"></i>
-            <i class="fa fa-user fa-stack-1x"></i>
+          <span class="fa-stack" >
+            <i class="fa-solid fa-user" style="color: #2d7619;"></i>
           </span>
           <h3 id="user-name">Rajkumar Jangam</h3>
           <p id="user-email">rajkumarjangam66@gmail.com</p>
@@ -78,32 +81,32 @@
             </div>
           </div>
         </div>
-        <a href="../user/login"
-          ><button class="logout">
+         
+          <button class="logout" id="logout">
             <i class="fa fa-sign-out" aria-hidden="true"></i>Logout
-          </button></a
-        >
+          </button>
+        
       </div>
       <button class="user-btn" id="user-btn" onclick="showhideprofile()">
         <i class="fa fa-user-circle"></i>
       </button>
     </section> 
 
-       <!-- toast notification -->
-       <!-- <section class="toast" id="toast">
-        <div class="toast-content" id="toast-content">
-          <i
-            class="fa fa-check-circle fa-2x"
-            aria-hidden="true"
-            style="color: green"
-          ></i>
-          <div class="message">
-            <span class="text text-1">Success</span>
-            <span class="text text-2">Your changes has been saved</span>
-          </div>
-        </div>
-      </section>
-      <!-- <button id="rzp_button">Buy Premium</button> -->
+       <!-- -----------------toast---------------- -->
+    <section class="toast" id="toast">
+      <div class="toast-content" id="toast-content">
+        <i
+        class="fa fa-check-circle fa-2x"
+        aria-hidden="true"
+        style="color: green"
+      ></i>
+      <div class="message">
+        <span class="text text-1">Success</span>
+        <span class="text text-2">Your changes has been saved</span>
+      </div>
+      </div>
+
+    </section>
 </header>
 <main>
 <div class="main-container">
@@ -127,14 +130,7 @@
 <!--                   
                 <div class="expense-bar">
                   <div class="bar">
-                      <button class="bar-des-btn" id="bar-des-btn"><svg id="eye-open" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
-                        <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z"/>
-                        <path d="M8 5.5a2.5 2.5 0 1 0 0 5 2.5 2.5 0 0 0 0-5zM4.5 8a3.5 3.5 0 1 1 7 0 3.5 3.5 0 0 1-7 0z"/>
-                      </svg> <svg id="eye-close" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-slash" viewBox="0 0 16 16">
-                        <path d="M13.359 11.238C15.06 9.72 16 8 16 8s-3-5.5-8-5.5a7.028 7.028 0 0 0-2.79.588l.77.771A5.944 5.944 0 0 1 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.134 13.134 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755-.165.165-.337.328-.517.486l.708.709z"/>
-                        <path d="M11.297 9.176a3.5 3.5 0 0 0-4.474-4.474l.823.823a2.5 2.5 0 0 1 2.829 2.829l.822.822zm-2.943 1.299.822.822a3.5 3.5 0 0 1-4.474-4.474l.823.823a2.5 2.5 0 0 0 2.829 2.829z"/>
-                        <path d="M3.35 5.47c-.18.16-.353.322-.518.487A13.134 13.134 0 0 0 1.172 8l.195.288c.335.48.83 1.12 1.465 1.755C4.121 11.332 5.881 12.5 8 12.5c.716 0 1.39-.133 2.02-.36l.77.772A7.029 7.029 0 0 1 8 13.5C3 13.5 0 8 0 8s.939-1.721 2.641-3.238l.708.709zm10.296 8.884-12-12 .708-.708 12 12-.708.708z"/>
-                      </svg></button>
+                      <button class="bar-des-btn" id="bar-des-btn"><i class="fa-regular fa-eye"  id="${expenseData.id}-eye-open"  style="display:block;  font-size:1.5rem;" onClick=eyeOpenFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des")></i><i class="fa-solid fa-eye-slash" id="${expenseData.id}-eye-close" style="display:none; font-size:1.5rem;"  onClick=eyeCloseFunc("${expenseData.id}-eye-open","${expenseData.id}-eye-close","${expenseData.id}-des")></i></button>
                       <div class="amount">&nbsp;<i class="fa fa-inr" aria-hidden="true" style="font-size: 0.95rem;"></i></div>
                      
                 
@@ -359,7 +355,7 @@
     
   
   </section>
-  <div class="plus-cross-btn-div">
+  <div class="plus-cross-btn-div" id="plus-cross-btn-div">
     <button class="plus-btn" id="plus-btn">+</button>
     <button class="cross-btn" id="cross-btn">×</button>
   </div>
@@ -371,6 +367,7 @@
 
 <script src="../../scripts/profile.js" ></script>
 <script src="../../scripts/expense.js"></script>
+<script src="../../scripts/toast.js"></script>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.4.0/axios.min.js" integrity="sha512-uMtXmF28A2Ab/JJO2t/vYhlaa/3ahUOgj1Zf27M5rOo8/+fcTUVH0/E0ll68njmjrLqOBjXM3V9NiPFL5ywWPQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>

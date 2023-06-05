@@ -23,10 +23,10 @@ newPasswordForm.addEventListener('submit', async (e) => {
         throw { response: response };
       }
     } else {
-      window.alert("Password doesn't match!");
+      notify({type:"error",message:"Password doesn't match!"});
     }
   } catch (error) {
-    // notify(error.response.data);
+    notify(error.response);
     console.log(error);
   }
 });

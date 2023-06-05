@@ -27,8 +27,9 @@ exports.purchasepremium = async (req,res,next) => {
         })
         return res.status(200).json({order_id : order.id, key_id : rzp.key_id}) 
     }
-    catch(err){
-        console.log(err);
+    catch(error){
+        console.log(error);
+        res.status(500).send(error);
     }
 }
 
@@ -58,8 +59,9 @@ exports.updateTransaction =  async (req,res,next) => {
         })
 
     }
-    catch(err){
-        console.log(err);
+    catch(error){
+        console.log(error);
+        res.status(500).send(error);
     }
     
 }
