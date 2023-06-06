@@ -206,7 +206,7 @@ function loadExpenseData() {
 
 function loadYearlyExpenseData(yearNumber) {
   const token = localStorage.getItem('sessionToken');
-  axios.get(`http://localhost:3000/expense/get-by-year?yearNumber=${yearNumber}`, {
+  axios.get(`http://54.161.242.20:3000/expense/get-by-year?yearNumber=${yearNumber}`, {
     headers: {
       Authorization: token,
     }
@@ -289,7 +289,7 @@ function loadMonthlyExpenseData(monthNumber) {
   const token = localStorage.getItem('sessionToken');
   
 
-  axios.get(`http://localhost:3000/expense/get-by-month?monthNumber=${monthNumber}`, {
+  axios.get(`http://54.161.242.20:3000/expense/get-by-month?monthNumber=${monthNumber}`, {
     headers: {
       Authorization: token,
     },
@@ -381,7 +381,7 @@ function  loadDailyExpenseData(dateNumber, page){
       rowsPerPageInput.value=rows;
      
      const token=localStorage.getItem('sessionToken');
-     axios.get(`http://localhost:3000/expense/get-by-date?dateNumber=${dateNumber}&page=${page}&rows=${rows}`,
+     axios.get(`http://54.161.242.20:3000/expense/get-by-date?dateNumber=${dateNumber}&page=${page}&rows=${rows}`,
      {
       headers: {
         Authorization: token,
@@ -448,7 +448,7 @@ dailyExpenseContainer.addEventListener('click',(e)=>{
     const token=localStorage.getItem('sessionToken');
     // console.log(`${e.target.id}`);
 
-    axios.delete(`http://localhost:3000/expense/delete/${e.target.id}`,
+    axios.delete(`http://54.161.242.20:3000/expense/delete/${e.target.id}`,
     {
       headers:{
         Authorization:token,
@@ -478,7 +478,7 @@ form.addEventListener('submit', (e) => {
   // console.log(dateEle[0].id);
   axios
     .post(
-      `http://localhost:3000/expense/addexpense?dateNumber=${dateEle[0].id}`,
+      `http://54.161.242.20:3000/expense/addexpense?dateNumber=${dateEle[0].id}`,
       {
         category: e.target.category.value,
         amount: e.target.amount.value,

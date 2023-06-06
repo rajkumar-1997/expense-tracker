@@ -7,7 +7,7 @@ const cors=require('cors');
 // const fs=require('fs');
 const app=express();
 
-
+app.use(cors());
 require('dotenv').config();
 const PORT=process.env.PORT || 3000;
 const sequelize=require('./util/database');
@@ -16,7 +16,7 @@ const sequelize=require('./util/database');
 // const accessLogStream = fs.createWriteStream('access.log', { flags : 'a' })
 // app.use(morgan('combined',{stream:accessLogStream}))
 
-app.use(cors());
+
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname,'public')));
