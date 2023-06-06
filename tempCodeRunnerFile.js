@@ -1,1 +1,0 @@
-  res.header('Content-Security-Policy', "img-src 'self'");
