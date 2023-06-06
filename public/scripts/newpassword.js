@@ -26,7 +26,7 @@ newPasswordForm.addEventListener('submit', async (e) => {
       notify({type:"error",message:"Password doesn't match!"});
     }
   } catch (error) {
-    notify(error.response);
+    notify(error.response.data);
     console.log(error);
   }
 });

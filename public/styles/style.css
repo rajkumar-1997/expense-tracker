@@ -225,57 +225,81 @@ hr{
     color: #333;
   }
 
-  @media screen and (max-width:1220px) {
+  
+
+
+@media screen and (max-width:1220px) {
   
 }
 
 @media screen and (max-width:890px) {
   
-}
-
-
-@media screen and (max-width:700px) {
-
-    body{
-        flex-direction: column;
-    }
-
+  body{
+    flex-direction: column;
+   }
    .left{
     height: 50vh;
-    margin-top: 2rem;
-   }
-   .right{
-    height: 50vh;
-    margin-top: 5rem;
-   
-   }
- 
-   .form-box{
-    height: 100%;
-    /* padding: 0 10rem ; */
+    width: 100%;
     
    }
-   form{
-    /* padding: 2rem 7rem; */
-    height: 100%;
-   }
+   .home-img img{
+    width:100%;
+    height: 40vh;
+   
+   
 }
+   .right{
+    height: 50%;
+    width: 100%;
+   }
+   .form-box{
+    width: 60%;
+    margin: 1.5rem 1rem;
+    height: 42vh;
+   
+   }
+
+   .heading h1{
+     font-size: 2rem;
+   }
+   .heading h5{
+    font-size: 1.5rem;
+  }
+}
+
+
 
 
 
 @media screen and (max-width:480px) {
-   
 
-    .left{
-        height: 60vh;
-        margin-top: 2rem;
-       }
-       .right{
-        height: 40vh;
-        margin-top: 5rem;
-       
-       }
-    
+  .form-box{
+    width: 100%;
+  
+   
+   }
+   form{
+    gap: 1.5rem;
+   }
+   .form-control input{
+    font-size: 1.2rem;
+   }
+  
 }
 
+@media screen and (max-width:380px) {
+
+  .form-box{
+    width: 100%;
+  
+   
+   }
+   form{
+    gap: 0.9rem;
+   }
+   .form-control input{
+    font-size: 1rem;
+   }
+  
+}
 
