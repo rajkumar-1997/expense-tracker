@@ -35,7 +35,7 @@ async function premiumOrNot() {
   try {
     const token = localStorage.getItem("sessionToken");
 
-    const response = await axios.get("http://54.161.242.20:3000/user/premium-check", {
+    const response = await axios.get("http://localhost:3000/user/premium-check", {
       headers: {
         Authorization: token,
       },
@@ -127,7 +127,7 @@ function disablePremium() {
 function leaderbordHandler(){
   const token=localStorage.getItem('sessionToken');
 
-  axios.get('http://54.161.242.20:3000/expense/leaderboard',{
+  axios.get('http://localhost:3000/expense/leaderboard',{
     
       headers:{
         Authorization:token,
@@ -229,7 +229,7 @@ async function downloadReport(e){
   try {
     const token=localStorage.getItem('sessionToken');
 
-  const response=await axios.get('http://54.161.242.20:3000/expense-file/download',{
+  const response=await axios.get('http://localhost:3000/expense-file/download',{
     headers:{
       Authorization:token,
     }
@@ -292,7 +292,7 @@ const openDownloadHistory=function(){
 async function showHistoryHandler(){
   try {
     const token=localStorage.getItem('sessionToken');
-    const response=await axios.get('http://54.161.242.20:3000/expense-file/download-history',{
+    const response=await axios.get('http://localhost:3000/expense-file/download-history',{
       headers:{
         Authorization:token,
       }
@@ -364,7 +364,7 @@ async function createOrder(e) {
 
   try {
     const response = await axios.get(
-      "http://54.161.242.20:3000/order/create-OrderId",
+      "http://localhost:3000/order/create-OrderId",
       {
         headers: {
           Authorization: token,
@@ -378,7 +378,7 @@ async function createOrder(e) {
       handler: async function (response) {
         try {
           await axios.post(
-            "http://54.161.242.20:3000/order/verify",
+            "http://localhost:3000/order/verify",
             {
               order_id: options.order_id,
               payment_id: response.razorpay_payment_id,
@@ -407,7 +407,7 @@ async function createOrder(e) {
 
         rzp1.on("payment.failed" , async (response) => {
           const order_id = response.error.metadata.order_id; 
-            await axios.post('http://54.161.242.20:3000/order/verify',{
+            await axios.post('http://localhost:3000/order/verify',{
                 order_id : order_id
             },  {
               headers: {

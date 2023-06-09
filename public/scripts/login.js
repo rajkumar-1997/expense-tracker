@@ -10,7 +10,7 @@ form.addEventListener('submit',async(e)=>{
     const email = e.target.email.value;
     const password = e.target.password.value;
   
-  const response= await  axios.post('http://54.161.242.20:3000/user/login', {
+  const response= await  axios.post('http://localhost:3000/user/login', {
                        email: email,
                       password: password,
                       })

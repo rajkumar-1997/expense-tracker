@@ -255,7 +255,7 @@ hr{
    .form-box{
     width: 60%;
     margin: 1.5rem 1rem;
-    height: 42vh;
+    height: auto;
    
    }
 
@@ -291,6 +291,7 @@ hr{
 
   .form-box{
     width: 100%;
+    height:auto;
   
    
    }
