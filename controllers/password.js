@@ -2,12 +2,14 @@ const User = require('../models/user');
 const ForgotPasswordRequest = require('../models/forgotPassword');
 const bcrypt = require('bcrypt');
 const saltRounds = 10;
+
 const Sib = require('sib-api-v3-sdk');
-require('dotenv').config();
+
 const { v4: uuidv4 } = require('uuid');
 const sequelize = require('../util/database');
 const path=require('path');
 const fs=require('fs');
+require('dotenv').config();
 
 function isNotValid(str) {
     if (str == undefined || str.length === 0) return true;
@@ -25,6 +27,7 @@ exports.postForgotPassword = async (req, res, next) => {
     const client = Sib.ApiClient.instance;
     const apiKey = client.authentications['api-key'];
     apiKey.apiKey = process.env.SIB_API_KEY;
+  
 
     const tranEmailApi = new Sib.TransactionalEmailsApi();
 
@@ -41,7 +44,7 @@ exports.postForgotPassword = async (req, res, next) => {
     });
 
     const sender = {
-      email: 'rajkumarjangam@gmail.com',
+      email: 'rajkumarjangam66@gmail.com',
       name: 'ExpenseBuzz',
     };
 

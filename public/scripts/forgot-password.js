@@ -9,6 +9,7 @@ resetPasswordBtn.addEventListener('click',async(e)=>{
     try{
         e.preventDefault()
         const email = emailInput.value;
+        console.log(email);
         const response = await axios.post('http://localhost:3000/password/forgotpassword', {
             email : email
         })
